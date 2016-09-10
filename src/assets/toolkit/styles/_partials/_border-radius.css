@@ -1,0 +1,19 @@
+  .br0 {        border-radius: 0 !important; }
+  .br1 {        border-radius: .375rem; }
+  .br-100 {     border-radius: 100%; }
+  .br--bottom {
+      border-top-left-radius: 0 !important;
+      border-top-right-radius: 0 !important;
+  }
+  .br--top {
+      border-bottom-left-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+  }
+  .br--right {
+      border-top-left-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+  }
+  .br--left {
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+  }

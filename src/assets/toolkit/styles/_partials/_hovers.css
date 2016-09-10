@@ -1,0 +1,57 @@
+@include lg {
+  .states {
+  transition: $hover-transition;
+  &:hover {
+    background-color: $white;
+  &:active {
+    opacity: .65;
+  }
+  }
+}
+
+  .states-opacity {
+    transition: $hover-transition;
+    transform: translateZ(0);
+    &:hover {
+      opacity: .85;
+    }
+    &:active {
+      opacity: .75;
+      transform: translateZ(0);
+    }
+    &:disabled {
+      background-color: $grey-2;
+    }
+  }
+
+
+  .states-shadow {
+    transition: $hover-transition;
+    &:hover {
+      box-shadow: $card-shadow-hover;
+    }
+    &:active {
+      box-shadow: $card-shadow;
+    }
+  }
+
+  /*// .hide-child .child {
+  //   opacity: 0;
+  //   transition: opacity .15s ease-in;
+  // }
+  // .hide-child:hover  .child,
+  // .hide-child:focus  .child,
+  // .hide-child:active .child {
+  //   opacity: 1;
+  //   transition: opacity .15s ease-in;
+  // }
+  //
+  // .underline-hover:hover,
+  // .underline-hover:focus {
+  //   text-decoration: underline;
+  // }
+  //*/
+  .pointer:hover {
+    cursor: pointer;
+  }
+}

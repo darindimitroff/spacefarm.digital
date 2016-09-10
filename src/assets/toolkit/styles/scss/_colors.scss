@@ -1,0 +1,51 @@
+// MAIN COLORS
+$white: rgba(250, 250, 250, 1);
+$grey-1: rgba(220, 221, 230, 1);
+$grey-2: rgba(189, 190, 199, 1);
+$grey-3: rgba(156, 157, 166, 1);
+$black: rgba(84, 84, 89, 1);
+$midnight: rgba(42, 56, 84, 1);
+$green: rgba(139, 197, 65, 1);
+$text-green: rgba(124, 186, 43, 1);
+$dark-green: rgba(8, 148, 71, 1);
+$highlight-green: rgba(213, 245, 171, 1);
+$red: rgba(255, 97, 107, 1);
+$yellow: rgba(255, 189, 56, 1);
+$blue: rgba(87, 167, 247, 1);
+
+// DASHBOARD COLORS
+$food-red: rgba(242, 73, 73, 1);
+$water-blue: rgba(64, 201, 255, 1);
+$shopping-purple: rgba(180, 103, 235, 1);
+$fridge-teal: rgba(104, 237, 233, 1);
+$reading-brown: rgba(191, 138, 77, 1);
+$notes-yellow: rgba(255, 228, 76, 1);
+$measurements-orange: rgba(255, 175, 64, 1);
+
+.fff { color: #fff !important }
+.grey-1 { color: $grey-1 !important }
+.grey-2 { color: $grey-2 !important }
+.grey-3 { color: $grey-3 !important }
+.black { color: $black !important }
+.midnight { color: $midnight !important }
+.green { color: $text-green !important }
+.dark-green { color: $dark-green !important }
+.highlight-green { color: $highlight-green !important }
+.red { color: $red !important }
+.yellow { color: $yellow !important }
+.blue { color: $blue !important }
+
+.bgn { background-color: transparent !important }
+.bg-fff { background-color: #fff }
+.bg-white { background-color: $white }
+.bg-grey-1 { background-color: $grey-1 }
+.bg-grey-2 { background-color: $grey-2 }
+.bg-grey-3 { background-color: $grey-3 }
+.bg-black { background-color: $black }
+.bg-midnight { background-color: #midnight }
+.bg-green { background-color: $green }
+.bg-dark-green { background-color: $dark-green }
+.bg-highlight-green { background-color: $highlight-green }
+.bg-red { background-color: $red }
+.bg-yellow { background-color: $yellow }
+.bg-blue { background-color: $blue; }

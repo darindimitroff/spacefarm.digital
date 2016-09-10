@@ -1,0 +1,148 @@
+//OTHER
+$card-shadow: 0 0 8px 0 rgba(20, 22, 26, .05), 0 3px 6px 0 rgba(20, 22, 26, .03);
+$card-shadow-hover: 0 0 10px 0 rgba(20, 22, 26, .09), 0 4px 8px 0 rgba(20, 22, 26, .05);
+
+@mixin responsive-icons($svg)
+{
+    background-image: url('../images/#{$svg}-s.svg');
+
+    @include desktop
+    {
+        background-image: url('../images/#{$svg}-m.svg');
+    }
+    @include desktopHD
+    {
+        background-image: url('../images/#{$svg}-l.svg');
+    }
+}
+
+@mixin see-more-arrow($rem, $width1, $width2, $width3)
+{
+    transition: $hover-transition;
+    &:after
+    {
+        display: inline-block;
+
+        width: $width1;
+        height: 1rem;
+        margin-left: .2rem;
+        padding-right: .2rem;
+
+        content: url('../images/arrow-#{$rem}rem-s.svg');
+        transition: $hover-transition;
+
+        @include desktop
+        {
+            width: $width2;
+
+            content: url('../images/arrow-#{$rem}rem-m.svg');
+        }
+        @include desktopHD
+        {
+            width: $width3;
+
+            content: url('../images/arrow-#{$rem}rem-l.svg');
+        }
+        &:hover
+        {
+            transform: translateX(5px);
+        }
+    }
+    &:hover
+    {
+        opacity: .85;
+    }
+    &:hover:after
+    {
+        transform: translateX(.1rem);
+    }
+}
+
+@mixin setBgColorAndHover($baseColor)
+{
+    transition: $hover-transition;
+    -webkit-transform: translateZ(0);
+
+    background-color: $baseColor;
+
+    -webkit-backface-visibility: hidden;
+    &:hover
+    {
+        background-color: darken($baseColor, 7%);
+    }
+    &:active
+    {
+        transform: scale(.98);
+
+        background-color: lighten($baseColor, 7%);
+    }
+}
+
+@mixin setFontColorAndHover($baseColor)
+{
+    transition: $hover-transition;
+
+    color: $baseColor;
+    &:hover
+    {
+        color: darken($baseColor, 7%);
+    }
+    &:active
+    {
+        color: lighten($baseColor, 7%);
+    }
+}
+
+//TRANSITIONS
+$hover-transition: all 150ms ease;
+$animation-transition: all 300ms cubic-bezier(.5, .1, 0, 1);
+$bouncy-transition: all 300ms cubic-bezier(.5, .1, 0, 1.2);
+$bouncy-transition-with-opacity: opacity 250ms cubic-bezier(.5, .1, 0, 1),  transform 300ms cubic-bezier(.5, .1, 0, 1.2);
+
+
+.hover-transition
+{
+  transition: $hover-transition;
+}
+
+.animation-transition
+{
+    transition: $animation-transition;
+
+}
+
+@keyframes animation-transition {
+  from {left: 0;}
+  to {left: calc(100% - 3.5rem);}
+}
+
+.animation-transition-square {
+  width: 3.5rem;
+  height: 100%;
+  background-color: #999;
+  position: absolute;
+  left: 0%;
+  top: 0;
+}
+
+.start-animate {
+  animation-name: animation-transition;
+  animation-duration: 300ms;
+  animation-timing-function: cubic-bezier(.5, .1, 0, 1);
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+.bouncy-transition
+{
+    transition: $bouncy-transition;
+}
+
+.bouncy-transition-square {
+  @extend .animation-transition-square;
+}
+
+.bounce-animate {
+  @extend .start-animate;
+  animation-timing-function: cubic-bezier(.5, .1, 0, 1.2);
+}
