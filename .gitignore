@@ -7,3 +7,4 @@ dist
 /.travis.yml
 /LICENSE
 /dist
+.DS_Store
