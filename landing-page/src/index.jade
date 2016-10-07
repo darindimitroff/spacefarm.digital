@@ -1,0 +1,51 @@
+extends _layouts/base
+
+block content
+  div.relative.z2.bg-white
+    .ph2.pt5.mw7.center
+      h1.f2.f1-sm.lh-solid.mb4.mw6.spacefarm Hello, this is spacefarm
+      p.mw6.mb4 This is a paragraph about us and how much we love design. We have <a href="http://www.thecrazyones.agency" target="blank">this old site↗</a> and we’re making a new one. Below is some work and a space plant. 
+
+      .row.mb3
+        .col-12.col-md-6.flex
+          a.bg-fff.shadow.pa3.db.mb2.br1
+            h2.f3.proctest Proctest↗
+            p We spent a few months redesigning a language testing tool used by NATO and The US Army.
+            
+        .col-12.col-md-6.flex
+          a.bg-fff.shadow.pa3.db.mb2.br1(href="https://dribbble.com/deezel", target="blank")
+            h2.f3.kutia Kutia.bg
+            p We helped the folks at Kutia, a food subscription service, discover their illustration style.
+            
+        .col-12.col-md-6.flex
+          a.bg-fff.shadow.pa3.db.mb2.br1(href="https://dribbble.com/deezel", target="blank")
+            h2.f3.timeheroes Time Heroes
+            p Helping others is a natural part of all of us, but some tend te forget about it. We did some pro-bono work for Time Heroes.
+          
+        .col-12.col-md-6.flex
+          a.bg-fff.shadow.pa3.db.mb2.br1
+            h2.f3.consentio Consentio↗
+            p Check out the web and branding work we did for Consentio, the team behind Telepat.
+            
+        .col-12.col-md-6.flex
+          a.bg-fff.shadow.pa3.db.mb2.br1
+            h2.f3.consentio Telepat
+            p Check out the web and branding work we did for Consentio, the team behind Telepat.
+            
+        .col-12.col-md-6.flex
+          a.bg-fff.shadow.pa3.db.mb2.br1(href="https://dribbble.com/deezel", target="blank")
+            h2.f3.dribbble Dribbble↗
+            p Keep up with our latest work on Dribbble while we're building our full site.
+            
+        .col-12.col-md-6.flex
+          a.bg-fff.shadow.pa3.db.mb2.br1(href="https://dribbble.com/deezel", target="blank")
+            h2.f3.medium Medium↗
+            p We don't do it as much as we'd like to, but we love writing. Check out our posts on Medium while we're working on our new blog.
+          
+        
+    .tc
+      p Drop us a line, we are very nice.  
+      a.btn.dib.bg-blue.fff.b.tc.ph3.pv2.br1.mb4(href="mailto:hello@spacefarm.digital") Contact
+    
+  svg.db.center(viewBox="0 0 375 165" width="100%")
+    use(xlink:href="images/footer-demo.svg#demo")

@@ -1,0 +1,14 @@
+.btn {
+  font-size: 1rem;
+  padding: 10px 16px;
+  cursor: pointer;
+  @extend .no-underline;
+  @extend .fw6;
+  @extend .hover-transition;
+  @extend .tc;
+  @extend .lh-copy;
+  @extend .nowrap;
+  @extend .spacefarm;
+  @extend .bg-fff;
+  @extend .shadow;
+}
