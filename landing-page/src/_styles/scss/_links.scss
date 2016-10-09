@@ -1,3 +1,7 @@
 p a {
   @extend .spacefarm, .underline;
+  text-decoration-skip: ink;
+  &:hover {
+    text-decoration-style: dotted;
+  }
 }
