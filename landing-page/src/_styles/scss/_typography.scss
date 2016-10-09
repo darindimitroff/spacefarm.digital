@@ -43,7 +43,7 @@ body {
 }
 
 ::selection {
-  background: rgba(#3872FA, .2);
+  background: $selection;
 }
 
 p {
