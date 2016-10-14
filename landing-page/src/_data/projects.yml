@@ -5,7 +5,7 @@ current:
     name: Telepat
     description: MISSING
     color: telepat
-
+  
 
 old:
 
@@ -14,13 +14,13 @@ old:
     description: We spent a few months redesigning a language testing tool used by NATO and The US Army.
     link: http://www.proctest.com
     color: proctest
-
+    
   Kutia.bg:
     name: Kutia
     description: Kutia man
     link: http://www.proctest.com
     color: kutia
-
+    
   TimeHeroes:
     name: Time Heroes↗
     description: Helping others is a natural part of all of us, but some tend te forget about it. We did some pro-bono work for Time Heroes.
@@ -39,12 +39,6 @@ old:
     color: dribbble
 
   Medium:
-    name: Medium↗
-    description: We don't do it as much as we'd like to, but we love writing. Check out our posts on Medium while we're working on our new blog.
-    color: medium
-    link: https://blog.thecrazyones.agency
-
-  Another one:
     name: Medium↗
     description: We don't do it as much as we'd like to, but we love writing. Check out our posts on Medium while we're working on our new blog.
     color: medium
