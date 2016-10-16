@@ -3,9 +3,6 @@ html {
   @include lg {
     font-size: 22px;
   }
-  @include xl {
-    font-size: 24px;
-  }
 }
 
 body {
