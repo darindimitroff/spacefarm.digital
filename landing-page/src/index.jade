@@ -7,13 +7,13 @@ block content
       p.mw6.mb4 This is a paragraph about us and how much we love design. We have <a href="http://www.thecrazyones.agency" target="blank">this old site↗</a> and we’re making a new one. Below is some work and a space plant.
 
         each thing, name in site.data.projects.work
-          h1.f3.lh-title.mb2 #{name}
+          h1.f4.lh-title.mb2 #{name}
           .row.mb3
             each stuff, chill in thing
-              .col-12.col-md-6.flex
+              .col-12.col-sm-6.flex
                 a.bg-fff.shadow.pa3.db.mb2.br1.states.relative.w-100(href="#{stuff.link}", target="_blank")
-                  h2.f3(class="#{stuff.color}") #{chill}
-                  p #{stuff.description}
+                  h2.f3.lh-title.mb1(class="#{stuff.color}") #{chill}
+                  p.mb1 #{stuff.description}
 
     .tc
       p Drop us a line, we are very nice.
