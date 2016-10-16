@@ -3,15 +3,17 @@ extends _layouts/base
 block content
   div.relative.z2
     .ph2.pt5.mw7.center
-      h1.f2.f1-sm.lh-solid.mb4.mw6.spacefarm Hello, this is spacefarm
+      h1.f2.f1-sm.lh-solid.mb4.mw6.spacefarm Hey, this is spacefarm
       p.mw6.mb4 This is a paragraph about us and how much we love design. We have <a href="http://www.thecrazyones.agency" target="blank">this old site↗</a> and we’re making a new one. Below is some work and a space plant.
 
-      .row.mb3
-        each thing in site.data.projects.old
-          .col-12.col-md-6.flex
-            a.bg-fff.shadow.pa3.db.mb2.br1.states.relative.w-100(href="#{thing.link}", target="_blank")
-              h2.f3(class="#{thing.color}") #{thing.name}
-              p #{thing.description}
+        each thing, name in site.data.projects.work
+          h1.f3.lh-title.mb2 #{name}
+          .row.mb3
+            each stuff, chill in thing
+              .col-12.col-md-6.flex
+                a.bg-fff.shadow.pa3.db.mb2.br1.states.relative.w-100(href="#{stuff.link}", target="_blank")
+                  h2.f3(class="#{stuff.color}") #{chill}
+                  p #{stuff.description}
 
     .tc
       p Drop us a line, we are very nice.

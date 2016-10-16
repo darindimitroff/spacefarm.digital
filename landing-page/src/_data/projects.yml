@@ -1,45 +1,46 @@
-current:
-  BB-Team:
-  Kirtan Raga:
-  Telepat:
-    name: Telepat
-    description: MISSING
-    color: telepat
-  
+work:
 
-old:
+  Curretly working on:
+    BB-Team:
+      description: We spent a few months redesigning a language testing tool used by NATO and The US Army.
+      link: http://www.proctest.com
+      color: proctest
+    Kirtan Raga:
+      description: We spent a few months redesigning a language testing tool used by NATO and The US Army.
+      link: http://www.proctest.com
+      color: proctest
+    Telepat:
+      description: We spent a few months redesigning a language testing tool used by NATO and The US Army.
+      link: http://www.proctest.com
+      color: proctest
 
-  Proctest:
-    name: Proctest↗
-    description: We spent a few months redesigning a language testing tool used by NATO and The US Army.
-    link: http://www.proctest.com
-    color: proctest
-    
-  Kutia.bg:
-    name: Kutia
-    description: Kutia man
-    link: http://www.proctest.com
-    color: kutia
-    
-  TimeHeroes:
-    name: Time Heroes↗
-    description: Helping others is a natural part of all of us, but some tend te forget about it. We did some pro-bono work for Time Heroes.
-    link: https://dribbble.com/deezel
-    color: timeheroes
 
-  Consentio:
-    name: Consentio↗
-    description: Check out the web and branding work we did for Consentio, the team behind Telepat.
-    link: http://consent.io
-    color: consentio
+  We recently did:
+    Proctest↗:
+      description: We spent a few months redesigning a language testing tool used by NATO and The US Army.
+      link: http://www.proctest.com
+      color: proctest
 
-  Dribbble:
-    name: Dribbble↗
-    description: Keep up with our latest work on Dribbble while we're building our full site.
-    color: dribbble
+    Kutia.bg:
+      description: Kutia man
+      link: http://www.proctest.com
+      color: kutia
 
-  Medium:
-    name: Medium↗
-    description: We don't do it as much as we'd like to, but we love writing. Check out our posts on Medium while we're working on our new blog.
-    color: medium
-    link: https://blog.thecrazyones.agency
+    Time Heroes↗:
+      description: Helping others is a natural part of all of us, but some tend te forget about it. We did some pro-bono work for Time Heroes.
+      link: https://dribbble.com/deezel
+      color: timeheroes
+
+    Consentio↗:
+      description: Check out the web and branding work we did for Consentio, the team behind Telepat.
+      link: http://consent.io
+      color: consentio
+
+    Dribbble↗:
+      description: Keep up with our latest work on Dribbble while we're building our full site.
+      color: dribbble
+
+    Medium↗:
+      description: We don't do it as much as we'd like to, but we love writing. Check out our posts on Medium while we're working on our new blog.
+      color: medium
+      link: https://blog.thecrazyones.agency
