@@ -2,10 +2,6 @@ work:
 
   Curretly working on:
 
-    Mindfullness:
-      description: Kirtan is a yoga practice focused on the soothing effect of sound. We're helping a team build the first serious publication focused around Kirtan.
-      color: kirtan
-
     Getting stronger:
       description: We spent the past couple of months working on a front-end design system and illustration guideline for a major health and fitness company.
       color: bbteam
@@ -14,10 +10,14 @@ work:
       description: Functional CSS made our lives much less painful. In order to work even faster and bring back to the community, we're building our own atomic toolkit based on Tachyons.
       color: spacefarm
 
+    Mindfullness:
+      description: Kirtan is a yoga practice focused on the soothing effect of sound. We're helping a team build the first major publication focused around Kirtan.
+      color: kirtan
+
 
   Recent work:
     Proctest↗:
-      description: We spent a few months redesigning a language testing tool used by NATO and The US Army, focusing on accesibility.
+      description: Over the course of a few months, we redesigned a language testing tool used by NATO and The US Army, focusing on accesibility.
       link: http://www.proctest.com
       color: proctest
 
@@ -41,6 +41,6 @@ work:
       color: dribbble
 
     Medium↗:
-      description: We love writing. We're trying to write more often. Check out our posts on Medium while we're working on our new blog.
+      description: We love writing and we're trying to do it more often. Check out our posts on Medium while we're working on our new blog.
       color: medium
       link: https://blog.thecrazyones.agency
