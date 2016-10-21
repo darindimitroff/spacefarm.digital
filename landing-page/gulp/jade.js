@@ -56,7 +56,7 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
     .pipe(plugins.plumber())
     .pipe(plugins.jade({
       jade: jade,
-      pretty: true,
+      pretty: false,
       locals: {
         config: config,
         debug: true,
