@@ -28,3 +28,5 @@ $bbteam: #089447;
 .bg-black { background-color: $black }
 .bg-spacefarm { background-color: $spacefarm }
 .bg-fff { background-color: #fff }
+
+.fade { background: linear-gradient(-180deg, $white 0%, rgba($white,0) 10%)}
