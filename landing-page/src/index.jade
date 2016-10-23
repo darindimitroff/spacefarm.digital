@@ -7,14 +7,19 @@ block content
       p.mw6.mb4 Spacefarm is a multidisciplinary design and front-end shop focused on digital products, design systems and branding. We used to be called <a href="http://www.thecrazyones.agency" target="blank">The Crazy Ones↗</a>. Our full site is coming soon.
 
         each thing, name in site.data.projects.work
-          h1.f4.lh-title.mb2 #{name}
+          h1.f5.lh-title.mb2 #{name}
           .row.mb3
             each stuff, chill in thing
               .col-12.col-sm-6.flex
                 a.bg-fff.shadow.pa3.db.mb2.br1.states.relative.w-100(href="#{stuff.link}", target="_blank")
-                  h2.f3.lh-title.mb1(class="#{stuff.color}") #{chill}
+                  h2.f4.lh-solid.mb1(class="#{stuff.color}") #{chill}
                   p.mb1 #{stuff.description}
 
     .tc
-      p Drop us a line, we are very nice.
-      a.btn.dib.bg-blue.fff.b.tc.ph3.pv2.br1.mb5.states(href="mailto:hello@spacefarm.digital") Contact
+      p Have an intersting project or just want to say Hi? Drop us a line.
+      a.btn.dib.bg-blue.fff.b.tc.ph3.pv2.br1.mb4.states(href="mailto:hello@spacefarm.digital") Contact
+
+  div.relative
+    .absolute.w-100.h-100.db.z2.fade
+    .illustration.relative
+      include _images/test.svg
