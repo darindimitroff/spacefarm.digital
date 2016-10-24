@@ -1,6 +1,0 @@
-p a {
-  @extend .spacefarm, .underline;
-  &:hover {
-    @extend .no-underline;
-  }
-}
