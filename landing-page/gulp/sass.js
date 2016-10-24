@@ -23,6 +23,9 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
           path.join(dirs.source, dirs.modules)
         ]
       }))
+      .pipe(gulpif(args.production, plugins.uncss({
+            html: ['tmp/index.html', 'build/index.html']
+        })))
       .on('error', function(err) {
         plugins.util.log(err);
       })
@@ -33,10 +36,6 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
         // Ex: 'src/_styles' --> '/styles'
         filepath.dirname = filepath.dirname.replace(dirs.source, '').replace('_', '');
       }))
-      .pipe(uncss({
-            html: ['./tmp/index.html']
-        }))
-      .pipe(gulpif(args.production, plugins.cssnano({rebase: false})))
       .pipe(plugins.sourcemaps.write('./'))
       .pipe(gulp.dest(dest))
       .pipe(browserSync.stream({match: '**/*.css'}));
