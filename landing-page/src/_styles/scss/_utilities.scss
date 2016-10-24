@@ -57,11 +57,12 @@ svg {
 	}
 }
 
+/*! uncss:ignore */
 .animate {
   svg g.fan {
     animation: fan 10s infinite linear;
   }
-  #red-lights {
+  svg path#red-lights {
   	animation: lights-red .3s infinite;
   	animation-direction: alternate;
   	animation-fill-mode: forwards;
