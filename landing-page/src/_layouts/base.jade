@@ -55,29 +55,9 @@ body.overflow-x-hidden
 
   block content
   
-  script(src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js")
-  
   <!--smoosh-->
+  script(src="scripts/fontLoader.js")
+  script(src="scripts/zepto.js")
   script(src="scripts/illustration.js")
   script(src="scripts/analytics.js")
-  script(src="scripts/fontLoader.js")
   <!--endsmoosh-->
-  
-  script.
-    $(window).scroll(function() {    
-      var scrollTop = $(window).scrollTop(),
-          elementOffset = $('.illustration').offset().top,
-          height = $('.illustration').height(),
-          windowHeight = $(window).height(),
-          distance = elementOffset - scrollTop - windowHeight;
-
-       //>=, not <=
-      if (distance < 0) {
-          //clearHeader, not clearheader - caps H
-          $(".illustration").addClass("animate");
-          console.log(distance);
-      }
-      else {
-        $(".illustration").removeClass("animate");
-      }
-    });
