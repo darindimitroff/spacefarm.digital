@@ -10,10 +10,16 @@ block content
           h1.f5.lh-title.mb2 #{name}
           .row.mb3
             each stuff, chill in thing
-              .col-12.col-sm-6.flex
-                a.bg-fff.shadow.pa3.db.mb2.br1.states.relative.w-100(href="#{stuff.link}", target="_blank")
-                  h2.f4.lh-solid.mb1(class="#{stuff.color}") #{chill}
-                  p.mb1 #{stuff.description}
+              if chill == "Dribbble↗"
+                .col-12.col-sm-6.flex
+                  .bg-fff.shadow.pa3.db.mb2.br1.relative.w-100
+                    h2.f4.lh-solid.mb1(class="#{stuff.color}") Dribbble↗
+                    p.mb1 While we're building our full site, check out <a class="dribbble" href="https://dribbble.com/KalinaIvanova">Kalina</a> and <a class="dribbble" href="https://dribbble.com/deezel">Darins</a> work on Dribbble.
+              else
+                .col-12.col-sm-6.flex
+                  a.bg-fff.shadow.pa3.db.mb2.br1.states.relative.w-100(href="#{stuff.link}", target="_blank")
+                    h2.f4.lh-solid.mb1(class="#{stuff.color}") #{chill}
+                    p.mb1 #{stuff.description}
 
     .tc
       p Have an intersting project or just want to say Hi? Drop us a line.
