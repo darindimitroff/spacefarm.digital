@@ -14,7 +14,12 @@ block content
                 .col-12.col-sm-6.flex
                   .bg-fff.shadow.pa3.db.mb2.br1.relative.w-100
                     h2.f4.lh-solid.mb1(class="#{stuff.color}") Dribbble↗
-                    p.mb1 While we're building our full site, check out <a class="dribbble" href="https://dribbble.com/KalinaIvanova">Kalina</a> and <a class="dribbble" href="https://dribbble.com/deezel">Darins</a> work on Dribbble.
+                    p.mb1 While we're building our full site, check out <a class="dribbble" href="https://dribbble.com/KalinaIvanova">Kalina</a> and <a class="dribbble" href="https://dribbble.com/deezel">Darin's</a> work on Dribbble.
+              else if (chill == "Mindfullness" || chill == "Getting stronger" || chill == "Designing with code")
+                .col-12.col-sm-6.flex
+                  .bg-fff.shadow.pa3.db.mb2.br1.relative.w-100
+                    h2.f4.lh-solid.mb1(class="#{stuff.color}") #{chill}
+                    p.mb1 #{stuff.description}
               else
                 .col-12.col-sm-6.flex
                   a.bg-fff.shadow.pa3.db.mb2.br1.states.relative.w-100(href="#{stuff.link}", target="_blank")
