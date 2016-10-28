@@ -61,6 +61,7 @@ svg {
 .animate {
   svg g.fan {
     animation: fan 10s infinite linear;
+    -moz-animation: none;
   }
   svg path#red-lights {
   	animation: lights-red .3s infinite;
