@@ -2,7 +2,7 @@
 block config
   //- Setup site's base URL to match the "baseUrl" key within `package.json`
   //- Otherwise default to relative pathing
-  - var baseUrl = config.baseUrl || 'spacefarm.digital'
+  - var baseUrl = config.baseUrl
 
 doctype html
 
@@ -28,17 +28,12 @@ head
   meta(property='og:title', content='Spacefarm')
   meta(property='og:url', content='www.spacefarm.digital')
   meta(property='og:image', content = baseUrl + '/images/og-image.jpg')
-  meta(property='business:contact_data:street_address', content='51 Maestro Kanev St')
-  meta(property='business:contact_data:locality', content='Sofia')
-  meta(property='business:contact_data:region', content='Sofia')
-  meta(property='business:contact_data:postal_code', content='1618')
-  meta(property='business:contact_data:country_name', content='Bulgaria')
 
   
   meta(name='viewport', content='width=device-width, initial-scale=1.0')
   block stylesheets
     <!--smoosh-->
-    link(rel='stylesheet', href= baseUrl + 'styles/main.css')
+    link(rel='stylesheet', href= baseUrl + '/styles/main.css')
     <!--endsmoosh-->
   link(rel="apple-touch-icon", sizes="180x180", href="/apple-touch-icon.png")
   link(rel="icon", type="image/png", href="/favicon-32x32.png", sizes="32x32")
