@@ -32,7 +32,7 @@ svg {
   }
 }
 
-//Animation
+/*! uncss:ignore */
 @keyframes fan {
 	from {
 		transform-origin: 50% 50%;
@@ -44,6 +44,7 @@ svg {
 	}
 }
 
+/*! uncss:ignore */
 @keyframes lights-red {
 	from {
 	  opacity: 1;
@@ -58,7 +59,7 @@ svg {
 }
 
 /*! uncss:ignore */
-.animate {
+.animate  {
   svg g.fan {
     animation: fan 10s infinite linear;
     -moz-animation: none;
