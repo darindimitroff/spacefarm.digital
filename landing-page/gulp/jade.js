@@ -5,6 +5,8 @@ var path = require('path');
 var foldero = require('foldero');
 var jade = require('jade');
 var yaml = require('js-yaml');
+var gulpif = require('gulp-if');
+var smoosher = require('gulp-smoosher');
 
 module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) {
   var dirs = config.directories;
@@ -56,7 +58,7 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
     .pipe(plugins.plumber())
     .pipe(plugins.jade({
       jade: jade,
-      pretty: true,
+      pretty: false,
       locals: {
         config: config,
         debug: true,
@@ -65,6 +67,9 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
         }
       }
     }))
+    .pipe(gulpif(args.production, smoosher({
+            base: 'build'
+    })))
     .pipe(plugins.htmlmin({
       collapseBooleanAttributes: true,
       conservativeCollapse: true,

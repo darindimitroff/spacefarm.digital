@@ -130,7 +130,7 @@ $spacing-extra-extra-extra-large: 16rem !default;
 .mhn2 { margin-left: -$spacing-small; margin-right: -$spacing-small}
 .mhn3 { margin-left: -$spacing-medium; margin-right: -$spacing-medium}
 
-.ma0  {  margin: $spacing-none; }
+.ma0  {  margin: $spacing-none !important; }
 .ma1 {  margin: $spacing-extra-small; }
 .ma2  {  margin: $spacing-small; }
 .ma3  {  margin: $spacing-medium; }

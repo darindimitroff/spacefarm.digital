@@ -1,45 +1,46 @@
-current:
-  BB-Team:
-  Kirtan Raga:
-  Telepat:
-    name: Telepat
-    description: MISSING
-    color: telepat
-  
+work:
 
-old:
+  Curretly working on:
 
-  Proctest:
-    name: Proctest↗
-    description: We spent a few months redesigning a language testing tool used by NATO and The US Army.
-    link: http://www.proctest.com
-    color: proctest
-    
-  Kutia.bg:
-    name: Kutia
-    description: Kutia man
-    link: http://www.proctest.com
-    color: kutia
-    
-  TimeHeroes:
-    name: Time Heroes↗
-    description: Helping others is a natural part of all of us, but some tend te forget about it. We did some pro-bono work for Time Heroes.
-    link: https://dribbble.com/deezel
-    color: timeheroes
+    Getting stronger:
+      description: We spent the past couple of months working on a front-end design system and illustration guideline for a major health and fitness company.
+      color: bbteam
 
-  Consentio:
-    name: Consentio↗
-    description: Check out the web and branding work we did for Consentio, the team behind Telepat.
-    link: http://consent.io
-    color: consentio
+    Designing with code:
+      description: Functional CSS made our lives much less painful. In order to work even faster and bring back to the community, we're building our own atomic toolkit based on Tachyons.
+      color: spacefarm
 
-  Dribbble:
-    name: Dribbble↗
-    description: Keep up with our latest work on Dribbble while we're building our full site.
-    color: dribbble
+    Mindfullness:
+      description: Kirtan is a yoga practice focused on the soothing effect of sound. We're helping a team build the first major publication focused around Kirtan.
+      color: kirtan
 
-  Medium:
-    name: Medium↗
-    description: We don't do it as much as we'd like to, but we love writing. Check out our posts on Medium while we're working on our new blog.
-    color: medium
-    link: https://blog.thecrazyones.agency
+
+  Recent work:
+    Proctest↗:
+      description: Over the course of a few months, we redesigned a language testing tool used by NATO and The US Army, focusing on accesibility.
+      link: http://www.proctest.com
+      color: proctest
+
+    Kutia.bg↗:
+      description: The team at Kutia is offering a subscription service based around healthy, organic and raw snacks. We helped them with their brand and illustration style.
+      link: https://dribbble.com/shots/2968093-Surprise-box
+      color: kutia
+
+    Time Heroes↗:
+      description: Time Heroes is platform for volunteering and doing good. We helped by designing and developing a campaign website targetted towards students and teachers.
+      link: https://timeheroes.org/theimpossibletest/#teachers
+      color: timeheroes
+
+    Consentio↗:
+      description: Check out the web and branding work we did for Consentio, the team behind Telepat. A full case study on Telepat is coming soon.
+      link: http://consent.io
+      color: consentio
+
+    Dribbble↗:
+      description: While we're building our full site, keep up with our latest work on Dribbble.
+      color: dribbble
+
+    Medium↗:
+      description: We love writing and we're trying to do it more often. Check out our posts on Medium while we're working on our new blog.
+      color: medium
+      link: https://blog.thecrazyones.agency

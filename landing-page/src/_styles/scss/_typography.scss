@@ -3,9 +3,6 @@ html {
   @include lg {
     font-size: 22px;
   }
-  @include xl {
-    font-size: 24px;
-  }
 }
 
 body {
@@ -13,9 +10,11 @@ body {
   line-height: 1.5;
   height: 100%;
   position: relative;
+  margin: 0;
+  padding: 0;
   -webkit-font-smoothing: antialiased;
   color: $black;
-  background-color: #fafafa;
+  background-color: $white;
   font-family: -apple-system, BlinkMacSystemFont, roboto,
                'avenir next', avenir,
                helvetica, 'helvetica neue',
@@ -35,10 +34,19 @@ body {
   font-weight: 500;
 }
 
-.real {
-  font-family: Real Text;
-  .f1, .f2, .f3, .f4 {
-    font-family: Real Head;
+/*! uncss:ignore */
+.real-text {
+  body {
+    font-family: Real Text;
+  }
+}
+
+/*! uncss:ignore */
+.real-head {
+  body {
+    .f1, .f2, .f3, .f4 {
+      font-family: Real Head;
+    }
   }
 }
 
