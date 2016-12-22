@@ -6,3 +6,4 @@ node_modules
 /.travis.yml
 /LICENSE
 .DS_Store
+/landing-page/npm-debug.log
