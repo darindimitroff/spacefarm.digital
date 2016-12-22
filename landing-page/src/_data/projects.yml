@@ -39,6 +39,7 @@ work:
     Dribbble↗:
       description: While we're building our full site, keep up with our latest work on Dribbble.
       color: dribbble
+      link: https://dribbble.com/spacefarm
 
     Medium↗:
       description: We love writing and we're trying to do it more often. Check out our posts on Medium while we're working on our new blog, hosted right here.

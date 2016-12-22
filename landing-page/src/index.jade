@@ -10,12 +10,7 @@ block content
           h1.f5.lh-title.mb2 #{name}
           .row.mb3
             each stuff, chill in thing
-              if chill == "Dribbble↗"
-                .col-12.col-sm-6.flex
-                  .bg-fff.shadow.pa3.db.mb2.br1.relative.w-100
-                    h2.f4.lh-title.mb1(class="#{stuff.color}") Dribbble↗
-                    p.mb1 Follow our most recent work and get a sneak peak at the process behind our new brand and website <a class="dribbble" href="https://dribbble.com/KalinaIvanova">here</a> and <a class="dribbble" href="https://dribbble.com/deezel">here</a>.
-              else if (chill == "Mindfullness" || chill == "Getting stronger" || chill == "Designing with code")
+              if (chill == "Mindfullness" || chill == "Getting stronger" || chill == "Designing with code")
                 .col-12.col-sm-6.flex
                   .bg-fff.shadow.pa3.db.mb2.br1.relative.w-100
                     h2.f4.lh-title.mb1(class="#{stuff.color}") #{chill}
