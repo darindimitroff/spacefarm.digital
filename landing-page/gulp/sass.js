@@ -24,7 +24,7 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
         ]
       }))
       .pipe(gulpif(args.production, plugins.uncss({
-            html: ['tmp/index.html', 'build/index.html']
+            html: ['tmp/*.html', 'build/*.html']
         })))
       .on('error', function(err) {
         plugins.util.log(err);
