@@ -1,9 +1,7 @@
-@include lg {
-  .states {
-    transition: $hover-transition;
-    &:hover {
-      transform: scale(1.007) translateY(-.06rem) translateZ(0);
-      box-shadow: $card-shadow-hover;
-    }
+.states {
+  transition: $hover-transition;
+  &:hover {
+    transform: scale(1.007) translateY(-.06rem) translateZ(0);
+    box-shadow: $card-shadow-hover;
   }
 }
