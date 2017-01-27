@@ -34,40 +34,40 @@ svg {
 
 /*! uncss:ignore */
 @keyframes fan {
-	from {
-		transform-origin: 50% 50%;
-		transform: rotate(0deg) translate3d(0,0,0);
-	}
-	to {
-		transform-origin: 50% 50%;
-		transform: rotate(360deg) translate3d(0,0,0);
-	}
+  from {
+    transform-origin: 50% 50%;
+    transform: rotate(0deg) translate3d(0,0,0);
+  }
+  to {
+    transform-origin: 50% 50%;
+    transform: rotate(360deg) translate3d(0,0,0);
+  }
 }
 
 /*! uncss:ignore */
 @keyframes lights-red {
-	from {
-	  opacity: 1;
+  from {
+    opacity: 1;
     fill: #e686a6;
     transform: translate3d(0,0,0);
-	}
-	to {
-		fill: #e686a6;
+  }
+  to {
+    fill: #e686a6;
     opacity: 0;
     transform: translate3d(0,0,0);
-	}
+  }
 }
 
 /*! uncss:ignore */
-.animate  {
-  svg g.fan {
-    animation: fan 10s infinite linear;
-    -moz-animation: none;
-  }
-  svg path#red-lights {
-  	animation: lights-red .3s infinite;
-  	animation-direction: alternate;
-  	animation-fill-mode: forwards;
-  	animation-timing-function: linear;
-  }
+.animate svg g.fan {
+  animation: fan 10s infinite linear;
+  -moz-animation: none;
+}
+
+/*! uncss:ignore */
+.animate svg path#red-lights {
+  animation: lights-red .3s infinite;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
 }
