@@ -7,3 +7,4 @@ node_modules
 /LICENSE
 .DS_Store
 /landing-page/build
+/build
