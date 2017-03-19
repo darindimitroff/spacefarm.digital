@@ -68,7 +68,7 @@ module.exports = function(gulp, plugins, args, config, taskTarget, browserSync) 
       }
     }))
     .pipe(gulpif(args.production, smoosher({
-            base: 'build'
+            base: 'tmp'
     })))
     .pipe(plugins.htmlmin({
       collapseBooleanAttributes: true,
