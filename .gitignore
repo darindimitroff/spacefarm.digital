@@ -8,4 +8,5 @@ node_modules
 .DS_Store
 /landing-page/build
 /tmp
+/build
 /npm-debug.log
