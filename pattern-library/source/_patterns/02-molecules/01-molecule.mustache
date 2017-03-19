@@ -1,0 +1,10 @@
+<div class="bg-primary pa3 b">
+  {{# festive }}
+    <img src="{{img.avatar.src}}" alt="{{img.avatar.alt}}">
+    <h1 class="f1 b lh-title mb2">{{name.first}} {{name.last}}</h1>
+  {{/ festive }}
+
+  {{> atoms-paragraph:grey-3|f1(text: "lorem")}}
+
+  {{> atoms-button }}
+</div>

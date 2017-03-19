@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "timestamp": 1486578917168,
+  "timestamp": 1486753426359,
   "graph": {
     "options": {
       "directed": true,
@@ -11,11 +11,41 @@
       {
         "v": "01-atoms/01-paragraph.mustache",
         "value": {
-          "compileState": "clean"
+          "compileState": "clean",
+          "lineagePath": "../../patterns/02-molecules-01-molecule/02-molecules-01-molecule.rendered.html",
+          "lineagePattern": "molecules-molecule",
+          "lineageState": "inreview"
         }
       },
       {
         "v": "01-atoms/05-button.mustache",
+        "value": {
+          "compileState": "clean",
+          "lineagePath": "../../patterns/02-molecules-01-molecule/02-molecules-01-molecule.rendered.html",
+          "lineagePattern": "molecules-molecule",
+          "lineageState": "inreview"
+        }
+      },
+      {
+        "v": "01-atoms/10-demo.mustache",
+        "value": {
+          "compileState": "clean"
+        }
+      },
+      {
+        "v": "01-atoms/15-quote.mustache",
+        "value": {
+          "compileState": "clean"
+        }
+      },
+      {
+        "v": "02-molecules/01-molecule.mustache",
+        "value": {
+          "compileState": "clean"
+        }
+      },
+      {
+        "v": "02-molecules/01-molecule~festive.json",
         "value": {
           "compileState": "clean"
         }
@@ -33,6 +63,32 @@
         }
       }
     ],
-    "edges": []
+    "edges": [
+      {
+        "v": "02-molecules/01-molecule~festive.json",
+        "w": "02-molecules/01-molecule.mustache",
+        "value": {}
+      },
+      {
+        "v": "02-molecules/01-molecule~festive.json",
+        "w": "01-atoms/01-paragraph.mustache",
+        "value": {}
+      },
+      {
+        "v": "02-molecules/01-molecule~festive.json",
+        "w": "01-atoms/05-button.mustache",
+        "value": {}
+      },
+      {
+        "v": "02-molecules/01-molecule.mustache",
+        "w": "01-atoms/01-paragraph.mustache",
+        "value": {}
+      },
+      {
+        "v": "02-molecules/01-molecule.mustache",
+        "w": "01-atoms/05-button.mustache",
+        "value": {}
+      }
+    ]
   }
 }
