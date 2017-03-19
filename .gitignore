@@ -7,6 +7,5 @@ node_modules
 /LICENSE
 .DS_Store
 /landing-page/build
-/build
 /tmp
 /npm-debug.log
