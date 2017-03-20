@@ -1,42 +1,4 @@
-# Spacefarm Landing Page readme
-
-Generated on 2016-10-05 using
-[generator-yeogurt@1.5.3](https://github.com/larsonjj/generator-yeogurt)
-
-## Description
-
-This is an example readme file.
-Describe your site/app here.
-
-## Technologies used
-
-JavaScript
-- [Browserify](http://browserify.org/)
-- [Node](https://nodejs.org/)
-
-Styles
-- [Sass](http://sass-lang.com/) via ([node-sass](https://github.com/sass/node-sass))
-
-Markup
-- [Jade](http://jade-lang.com/)
-
-Optimization
-- [Imagemin](https://github.com/imagemin/imagemin)
-- [Uglify](https://github.com/mishoo/UglifyJS)
-
-Server
-- [BrowserSync](http://www.browsersync.io/)
-
-Linting
-- [ESlint](http://eslint.org/)
-
-Automation
-- [Gulp](http://gulpjs.com)
-
-Code Management
-- [Editorconfig](http://editorconfig.org/)
-- [Git](https://git-scm.com/)
-
+This is our landing page. It's pretty barebone for now.
 
 ## Automated tasks
 
