@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .warning {
   color: #9F6000;
   background-color: #FEEFB3;
