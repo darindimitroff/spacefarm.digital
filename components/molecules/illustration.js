@@ -34,6 +34,9 @@ const Fader = styled.div`
 
 const IllustrationWrapper = styled.div`
     position: relative;
+    width: 100%;
+    overflow:hidden;
+    height: 11rem;
 `
 
 const fan = keyframes`
@@ -92,7 +95,7 @@ class Illustration extends React.Component {
             <IllustrationWrapper>
                 <Fader/>
                 <Animate>
-                    <Isvg src="test.svg" uniquifyID={false}></Isvg>
+                    <Isvg src="test.svg" uniquifyIDs={false}></Isvg>
                 </Animate>
             </IllustrationWrapper>
         );

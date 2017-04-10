@@ -33,7 +33,7 @@ export default class Index extends React.Component {
         <Container>
           <H1>
             <Icon>
-              <Isvg src="logo.svg" uniquifyIDs={false}></Isvg>
+              <Isvg src="logo.svg"></Isvg>
             </Icon>
             <span>spacefarm</span>
           </H1>
