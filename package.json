@@ -4,6 +4,8 @@
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "datocms-client": "^0.3.21",
+    "file-system": "^2.2.2",
     "front-matter": "^2.1.2",
     "gatsby": "^0.12.36",
     "grid-styled": "^1.0.1",

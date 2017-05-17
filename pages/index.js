@@ -10,14 +10,10 @@ import Center from 'components/wrappers/center'
 // Components
 import App from 'components/app'
 import Container from 'components/wrappers/container'
-import H1 from 'components/H1'
-import A from 'components/a'
-import Paragraph from 'components/p'
-import Project from 'components/molecules/Project'
-import Icon from 'components/icon'
-import Button from 'components/button'
+import Button from 'components/atoms/button'
+import Intro from 'components/organisms/intro'
 import ProjectList from 'components/organisms/ProjectList'
-import Illustration from 'components/molecules/illustration'
+import Illustration from 'components/molecules/Illustration'
 
 export default class Index extends React.Component {
   render() {
@@ -31,16 +27,14 @@ export default class Index extends React.Component {
           ]}
         />
         <Container>
-          <H1>
-            <Icon>
-              <Isvg src="logo.svg"></Isvg>
-            </Icon>
-            <span>spacefarm</span>
-          </H1>
-          <Paragraph>Spacefarm is a multidisciplinary design and front-end shop focused on digital products, design systems and branding. We used to be called <A target="blank" href="http://www.thecrazyones.agency">The Crazy Ones↗</A>. Our full site is coming soon.</Paragraph>
 
+          <Intro/>
+
+
+          {/* Featured projects */}
           <ProjectList/>
 
+          {/* Contact button */}
           <Center>
             <Button>Contact</Button>
           </Center>
