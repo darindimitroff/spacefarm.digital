@@ -1,13 +1,6 @@
+# node / npm
 node_modules
-.sass-cache
-/.babelrc
-/.editorconfig
-/.eslintrc
-/.travis.yml
-/LICENSE
-.DS_Store
-/landing-page/build
-/tmp
-/build
-/npm-debug.log
-.env
+*.log
+
+# phenomic build
+dist
