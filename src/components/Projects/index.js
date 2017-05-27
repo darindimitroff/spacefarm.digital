@@ -3,27 +3,27 @@ import enhanceCollection from "phenomic/lib/enhance-collection"
 
 import PagesList from "../../components/PagesList"
 
-const defaultNumberOfPosts = 3
+const defaultNumberOfPosts = 6
 
-const LatestPosts = (props, { collection }) => {
-  const latestPosts = enhanceCollection(collection, {
-    filter: ({ type }) => type == "Project",
+const Projects = (props, { collection }) => {
+  const projects = enhanceCollection(collection, {
+    filter: { layout: "post" },
   })
   .slice(0, props.numberOfPosts || defaultNumberOfPosts)
 
   return (
     <div>
-      <PagesList pages={ latestPosts } />
+      <PagesList pages={ projects } />
     </div>
   )
 }
 
-LatestPosts.propTypes = {
+Projects.propTypes = {
   numberOfPosts: PropTypes.number,
 }
 
-LatestPosts.contextTypes = {
+Projects.contextTypes = {
   collection: PropTypes.array.isRequired,
 }
 
-export default LatestPosts
+export default Projects

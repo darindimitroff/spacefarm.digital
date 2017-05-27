@@ -5,4 +5,4 @@ const A = styled.a`
     text-decoration: underline;
 `
 
-export default A;
+export default A

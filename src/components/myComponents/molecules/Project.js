@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import styled from 'styled-components'
 
 // Styles
@@ -17,21 +17,25 @@ const Card = styled.a`
         margin-bottom: .25rem;
         line-height: 1.2;
         font-family: Real Head Offc;
-        color: ${props => props.color};
+        color: ${props => props.color ? props.color : '#5538fa'};
     }
-`;
+`
 
 // Component
-class Project extends React.Component {
+const Project = ({ link, color, title, text }) => {
+    return (
+        <Card href={link} color={color}>
+            <h2>{title}</h2>
+            <p>{text}</p>
+        </Card>
+    )
+}
 
-    render() {
-        return (
-            <Card flex href={this.props.link} color={this.props.color}>
-                <h2>{this.props.title}</h2>
-                <p>{this.props.text}</p>
-            </Card>
-        );
-    }
+Project.propTypes = {
+  link: PropTypes.string,
+  color: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 }
 
 export default Project;

@@ -132,6 +132,7 @@
   },
   "dependencies": {
     "@storybook/addon-knobs": "^3.0.0-alpha.0",
+    "datocms-client": "^0.3.23",
     "getstorybook": "^1.7.0",
     "glamor": "^2.20.25",
     "glamorous": "^3.17.0",

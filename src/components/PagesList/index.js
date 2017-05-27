@@ -1,8 +1,5 @@
-import React, { PropTypes } from "react"
-
-import PagePreview from "../PagePreview"
-
-import styles from "./index.css"
+import React, { PropTypes } from 'react'
+import Project from '../../components/myComponents/molecules/Project'
 
 const PagesList = ({ pages }) => {
   return (
@@ -10,15 +7,17 @@ const PagesList = ({ pages }) => {
       {
       pages.length
       ? (
-        <ul className={ styles.list }>
+        <ul>
           {
           pages.map((page) => (
-            <li key={ page.title }><PagePreview { ...page } /></li>
+            <li key={ page.title }>
+              <Project title={ page.title } text={ page.description } color={ page.color }/>
+            </li>
           ))
         }
         </ul>
       )
-      : "No posts yet."
+      : 'No posts yet.'
     }
     </div>
   )
