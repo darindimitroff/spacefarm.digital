@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import styled from 'styled-components'
-import styles from '../../../utils/styles'
+import colors from '../../../utils/colors'
 
 // Styles
 const Card = styled.a`
@@ -17,7 +17,7 @@ const Card = styled.a`
         margin-bottom: .25rem;
         line-height: 1.2;
         font-family: Real Head Offc;
-        color: ${props => props.color ? props.color : styles.colors.brand };
+        color: ${props => props.color ? props.color : colors.yellowA700 };
     }
 `
 
