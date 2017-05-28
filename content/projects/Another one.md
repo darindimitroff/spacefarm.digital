@@ -1,7 +1,7 @@
 ---
 type: Project
 title: Another one
-color: '#333'
+colorTest: null
 ---
 
 How about this one? How about this one? How about this one? How about this one?How about this one?

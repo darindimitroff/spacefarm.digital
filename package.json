@@ -135,9 +135,11 @@
     "datocms-client": "^0.3.23",
     "getstorybook": "^1.7.0",
     "glamor": "^2.20.25",
-    "glamorous": "^3.17.0",
+    "glamorous": "^3.18.1",
+    "react-css-variables": "^2.0.1",
     "react-inlinesvg": "^0.6.0",
     "react-svg": "^2.1.21",
-    "styled-components": "^2.0.0"
+    "styled-components": "^2.0.0",
+    "styled-components-tachyons": "^0.0.4"
   }
 }
