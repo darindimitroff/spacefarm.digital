@@ -17,7 +17,7 @@ const Card = styled.a`
         margin-bottom: .25rem;
         line-height: 1.2;
         font-family: Real Head Offc;
-        color: ${props => (props.color ? props.color : colors.cyanA400)};
+        color: ${props => (props.color ? props.color : colors.spacefarm)};
     }
 `
 
