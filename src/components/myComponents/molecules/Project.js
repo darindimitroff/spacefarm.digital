@@ -17,18 +17,18 @@ const Card = styled.a`
         margin-bottom: .25rem;
         line-height: 1.2;
         font-family: Real Head Offc;
-        color: ${props => props.color ? props.color : colors.yellowA700 };
+        color: ${props => (props.color ? props.color : colors.cyanA400)};
     }
 `
 
 // Component
 const Project = ({ link, color, title, text }) => {
-    return (
-        <Card href={link} color={color}>
-            <h2>{title}</h2>
-            <p>{text}</p>
-        </Card>
-    )
+  return (
+    <Card href={link} color={color}>
+      <h2>{title}</h2>
+      <p>{text}</p>
+    </Card>
+  )
 }
 
 Project.propTypes = {
@@ -38,4 +38,4 @@ Project.propTypes = {
   text: PropTypes.string.isRequired,
 }
 
-export default Project;
+export default Project
