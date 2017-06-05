@@ -1,19 +1,10 @@
-# [Phenomic](https://github.com/MoOx/phenomic) phenomic-theme-base
+# gatsby-starter-default
+The default Gatsby starter
 
-## Install dependencies
-
-```sh
-npm install
+Install this starter (assuming Gatsby is installed) by running from your CLI:
 ```
-
-## Run development server
-
-```sh
-npm start
+gatsby new gatsby-example-site
 ```
+## Deploy
 
-## Build for production
-
-```sh
-npm run build
-```
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
