@@ -1,5 +1,5 @@
 import React, { PropTypes } from "react"
-import A from '../../components/myComponents/atoms/a'
+import A from '../../components/atoms/a'
 
 import Page from "../Page"
 

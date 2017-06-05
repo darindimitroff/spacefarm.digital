@@ -3,12 +3,12 @@ import styled from 'styled-components'
 import { storiesOf, action, linkTo } from '@kadira/storybook'
 
 // My components
-import App from '../src/components/myComponents/app'
-import A from '../src/components/myComponents/atoms/a'
-import Button from '../src/components/myComponents/atoms/button'
-import H1 from '../src/components/myComponents/atoms/H1'
-import InlineIcon from '../src/components/myComponents/atoms/icon'
-import P from '../src/components/myComponents/atoms/p'
+import App from '../src/components/app'
+import A from '../src/components/atoms/a'
+import Button from '../src/components/atoms/button'
+import H1 from '../src/components/atoms/H1'
+import InlineIcon from '../src/components/atoms/icon'
+import P from '../src/components/atoms/p'
 
 const stories = storiesOf('Atoms', module);
 

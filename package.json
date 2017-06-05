@@ -6,7 +6,6 @@
   "repository": "https://github.com/darindimitroff/spacefarm.digital.git",
   "scripts": {
     "lint:js": "eslint --ignore-path .gitignore --fix .",
-    "lint:css": "stylelint \"src/**/*.css\"",
     "lint": "npm-run-all --parallel lint:*",
     "start": "phenomic start",
     "build": "phenomic build",
@@ -110,10 +109,6 @@
     "history": "^2.0.0",
     "npm-run-all": "^1.7.0",
     "phenomic": "^0.21.1",
-    "postcss-browser-reporter": "^0.4.0",
-    "postcss-cssnext": "^2.4.0",
-    "postcss-loader": "^1.3.3",
-    "postcss-reporter": "^1.3.0",
     "raw-loader": "^0.5.1",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
@@ -139,6 +134,7 @@
     "react-css-variables": "^2.0.1",
     "react-inlinesvg": "^0.6.0",
     "react-svg": "^2.1.21",
+    "storybook": "^0.0.0",
     "styled-components": "^2.0.0",
     "styled-components-tachyons": "^0.0.4"
   }
