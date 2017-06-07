@@ -3,32 +3,10 @@ extends _layouts/base
 block content
   main.relative.z2
     .ph3.pt5.mw7.center
-      h1.f3.f1-sm.lh-solid.mb3.mb4-sm.mw6.spacefarm 
-        span.dib(style="width:.65em;height:.65em;vertical-align:-2.5%;margin-right:.25em;")
-          include _images/logo.svg
-        | spacefarm
-      p.mw6.mb4 Spacefarm is a multidisciplinary design and front-end shop focused on digital products, design systems and branding. We used to be called <a href="http://www.thecrazyones.agency" target="blank">The Crazy Ones↗</a>. Our full site is coming soon.
+      include _components/hero.jade
 
-        each thing, name in site.data.projects.work
-          h2.f5.lh-title.fw6.mb2 #{name}
-          ul.row.mb3
-            each stuff, chill in thing
-              if (chill == "Mindfullness" || chill == "Getting stronger" || chill == "Designing with code")
-                li.col-12.col-sm-6.flex
-                  .bg-fff.shadow.pa3.db.mb2.br1.relative.w-100
-                    h3.f4.lh-title.mb1(class="#{stuff.color}") #{chill}
-                    p.mb1 #{stuff.description}
-              else
-                li.col-12.col-sm-6.flex
-                  a.bg-fff.shadow.pa3.db.mb2.br1.states.relative.w-100(href="#{stuff.link}", target="_blank")
-                    h3.f4.lh-title.mb1(class="#{stuff.color}") #{chill}
-                    p.mb1 #{stuff.description}
+      include _components/projects.jade
 
-      .flex.flex-wrap.justify-center.mw6.center
-        p Feel like building something exciting together? Drop us a line.
-        a.btn.dib.mb4.states(href="mailto:hello@spacefarm.digital") Contact
+      include _components/contact.jade
 
-  div.relative(aria-hidden="true")
-    .absolute.w-100.h-100.db.z2.fade
-    .illustration.relative
-      include _images/test.svg
+      include _components/illustration.jade
