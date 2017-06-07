@@ -1,24 +1,37 @@
 work:
-
   Currently working on:
-
-    Getting stronger:
-      description: We spent the past couple of months working on a front-end design system and illustration guideline for a major health and fitness company.
-      color: bbteam
-
-    Designing with code:
-      description: Functional CSS made our lives significantly less painful. In order to work even faster and give back to the community, we're building our own atomic toolkit based on Tachyons.
+    Growing bigger:
+      description: We’re super thrilled to announce Gergana and Angel are joining our team, so now there’s four of us! While we’ll keep focusing on production, they will be helping out with research, testing, copywriting, strategy and planning.
       color: spacefarm
 
-    Mindfullness:
-      description: Kirtan is an ancient meditation practice focused on the soothing effect of sound. We're helping a team build the first major publication about the history and practice of Kirtan.
-      color: kirtan
+    A color tool:
+      description: Our first open-source product is already in the making. Wouldn’t it be great if you could re-color a whole design system just by tweaking a few values in an easy to use in-browser responsive UI wit no coding required? We hope it’s coming later this year.
+      color: spacefarm
+
+    A React layout library:
+      description: Layout in React can be tackled in so many ways, so we decided to introduce some more fatigue to the JavaScript game. 😜 We’re planning to open-source our internal constraints and sizing tool later this year.
+      color: react
+
+    Improved↗:
+      description: Nobody likes to be the whiny person on Twitter who keeps being mad at poorly-done software. Yet, we felt like we were that person far too often. This year, we are revitalizing our old project Improved with new authors and new, more diverse topics and formats.
+      link: http://www.improved.design/
+      color: improved
 
 
   Recent work:
-    Proctest↗:
-      description: Over the course of a few months, we redesigned a language testing tool used by NATO and The US Army, focusing on accesibility.
-      link: https://dribbble.com/shots/3315279-SVG-anime-js-hero-animation
+    BB-Team↗:
+      description: We had the opportunity to work with the leading local health and fitness portal. We shipped a complex atomic design system with hundreds of front-end components and built a couple of new features and user flows. We also worked on a new visual design language and an illustration guideline.
+      link: https://www.bb-team.org/
+      color: bbteam
+
+    CMS template for Netlify↗:
+      description: We ❤️-ed Netlify before we had the chance to work together. A few months ago, we shipped the first template for Netlify’s open-source static site CMS. We created an imaginary coffee brand, built a brand and visual language around it and designed a small CMS-integrated Hugo website with real content.
+      color: netlify
+      link: https://github.com/netlify-templates/kaldi-hugo-cms-template
+
+    Proctest design system↗:
+      description: Proctest is a large-scale language testing tool used by NATO and the US Army. We’ve worked on multiple projects with their team over the years. Last year, we finally had the chance to build a front-end design system for the product’s upcoming update.
+      link: https://dribbble.com/shots/3318406-Primary-navigation-interaction
       color: proctest
 
     Kutia.bg↗:
