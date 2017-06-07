@@ -11,6 +11,9 @@ $timeheroes: #f56322;
 $selection: #d2defa;
 $kirtan: #fed54f;
 $bbteam: #089447;
+$react: #00d8ff;
+$netlify: #00c7b7;
+$improved: #7e868c;
 
 .white { color: $white }
 .black { color: $black }
@@ -23,10 +26,14 @@ $bbteam: #089447;
 .timeheroes { color: $timeheroes }
 .kirtan { color: $kirtan }
 .bbteam { color: $bbteam }
+.react { color: $react }
+.netlify { color: $netlify }
+.improved { color: $improved }
 
 .bg-white { background-color: $white }
 .bg-black { background-color: $black }
 .bg-spacefarm { background-color: $spacefarm }
 .bg-fff { background-color: #fff }
+.bg-selection { background-color: $selection }
 
 .fade { background: linear-gradient(-180deg, $white 0%, rgba($white,0) 10%)}
