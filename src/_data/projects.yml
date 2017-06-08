@@ -5,7 +5,7 @@ work:
       color: spacefarm
 
     A color tool:
-      description: Our first open-source product is already in the making. Wouldn’t it be great if you could re-color a whole design system just by tweaking a few values in an easy to use in-browser responsive UI wit no coding required? We hope it’s coming later this year.
+      description: Our first open-source product is already in the making. Wouldn’t it be great if you could re-color a whole design system just by tweaking a few values in an easy to use in-browser responsive UI with no coding required? We hope it’s coming later this year.
       color: spacefarm
 
     A React layout library:
@@ -25,7 +25,7 @@ work:
       color: bbteam
 
     CMS template for Netlify↗:
-      description: We ❤️-ed Netlify before we had the chance to work together. A few months ago, we shipped the first template for Netlify’s open-source static site CMS. We created an imaginary coffee brand, built a brand and visual language around it and designed a small CMS-integrated Hugo website with real content.
+      description: We ❤️-ed Netlify before we had the chance to work together. A few months ago, we shipped the first template for Netlify’s open-source static site CMS. We created an imaginary coffee business, built a brand and visual language around it and designed a small CMS-integrated Hugo website with real content.
       color: netlify
       link: https://github.com/netlify-templates/kaldi-hugo-cms-template
 
