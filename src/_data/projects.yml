@@ -7,6 +7,7 @@ work:
     A color tool:
       description: Our first open-source product is already in the making. Wouldn’t it be great if you could re-color a whole design system just by tweaking a few values in an easy to use in-browser responsive UI with no coding required? We hope it’s coming later this year.
       color: spacefarm
+      link: http://www.gamut.tools/
 
     A React layout library:
       description: Layout in React can be tackled in so many ways, so we decided to introduce some more fatigue to the JavaScript game. 😜 We’re planning to open-source our internal constraints and sizing tool later this year.
