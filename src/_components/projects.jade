@@ -5,11 +5,11 @@ each thing, name in site.data.projects.work
       each stuff, chill in thing
         if (chill == "Mindfullness" || chill == "Getting stronger" || chill == "Designing with code" || chill == "A React layout library" || chill == "Growing bigger" )
           li.col-12.col-sm-6.flex
-            .bg-fff.shadow.pa3.db.mb2.br1.relative.w-100
+            .bg-fff.shadow.pa3.db.mb3.br1.relative.w-100
               h3.f4.lh-title.mb1(class="#{stuff.color}") #{chill}
               p.mb1 #{stuff.description}
         else
           li.col-12.col-sm-6.flex
-            a.bg-fff.shadow.pa3.db.mb2.br1.states.relative.w-100(href="#{stuff.link}", target="_blank")
+            a.bg-fff.shadow.pa3.db.mb3.br1.states.relative.w-100(href="#{stuff.link}", target="_blank")
               h3.f4.lh-title.mb1(class="#{stuff.color}") #{chill}
               p.mb1 #{stuff.description}
