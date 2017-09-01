@@ -1,8 +1,14 @@
 work:
   Currently working on:
-    Growing bigger:
-      description: We’re super thrilled to announce Gergana and Angel are joining our team, so now there’s four of us! While we’ll keep focusing on production, they will be helping out with research, testing, copywriting, strategy and planning.
-      color: spacefarm
+
+    A platform for hackathons:
+      description: Hackathons are an amazing way to make ideas happen. Organizing them and finding a diverse set of people is not easy though. We're helping an early-stage startup design and build v1 of their product.
+      color: hckrs
+
+    A design system:
+      description: Hackathons are an amazing way to make ideas happen. Organizing them and finding a diverse set of people is not easy though. We're helping an early-stage startup design and build v1 of their product.
+
+      color: limbix
 
     A color tool↗:
       description: Our first open-source product is already in the making. Wouldn’t it be great if you could re-color a whole design system just by tweaking a few values in an easy to use in-browser responsive UI with no coding required? We hope it’s coming later this year.
