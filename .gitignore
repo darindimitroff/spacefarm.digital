@@ -11,3 +11,7 @@ node_modules
 /build
 /npm-debug.log
 /.env
+/src/_components/projects_BACKUP_76292.jade
+/src/_components/projects_BASE_76292.jade
+/src/_components/projects_LOCAL_76292.jade
+/src/_components/projects_REMOTE_76292.jade
