@@ -79,12 +79,5 @@ for (i = 0; i < 15; i++) {
       height = $('.illustration').height(),
       windowHeight = $(window).height(),
       distance = elementOffset - scrollTop - windowHeight;
-    if (distance < 0) {
-      //clearHeader, not clearheader - caps H
-      $(".illustration").addClass("animate");
-      // console.log(distance);
-    } else {
-      $(".illustration").removeClass("animate");
-    }
   };
 })();
