@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spacefarm - Under Construction</title>
+    <title>Under Construction - Obra Dinn Style</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
+
     <style>
-        * {
+        body, html {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #000;
+            width: 100%;
+            height: 100%;
             overflow: hidden;
-            font-family: 'Courier New', Courier, monospace;
+            background-color: #000;
+            font-family: 'Cutive Mono', monospace;
         }
 
-        #canvas {
+        #canvas-container {
             position: fixed;
             top: 0;
             left: 0;
@@ -26,291 +28,471 @@
             z-index: 1;
         }
 
-        .content {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+        /* --- Retro UI --- */
+        #ui-layer {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 10;
             text-align: center;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 15px 25px;
+            border: 2px solid currentColor; /* Takes text color */
+            color: white; /* Default, will be overridden by JS */
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            transition: color 0.3s, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            min-width: 300px;
+        }
+
+        .title-block {
+            position: fixed;
+            top: 40px;
+            left: 50%; /* Center it */
+            transform: translateX(-50%);
+            z-index: 10;
+            pointer-events: none;
+            color: white; /* Overridden by JS */
+            mix-blend-mode: difference;
+            text-align: center;
+            width: 80%;
         }
 
         h1 {
-            color: #fff;
-            font-size: clamp(2rem, 8vw, 6rem);
-            font-weight: 300;
-            letter-spacing: 0.1em;
-            text-transform: lowercase;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-            animation: fadeIn 1.5s ease-in;
+            font-size: 2.5rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 1;
         }
 
-        .caret {
-            display: inline-block;
-            width: 0.3em;
-            height: 1em;
-            background-color: #fff;
-            margin-left: 0.1em;
+        .subtitle {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            opacity: 0.9;
+            text-transform: uppercase;
+            min-height: 1.5em;
+            transition: opacity 0.2s;
+        }
+
+        .typing-cursor::after {
+            content: '█';
             animation: blink 1s infinite;
-            vertical-align: baseline;
+            margin-left: 5px;
         }
 
-        @keyframes blink {
-            0%, 49% {
-                opacity: 1;
-            }
-            50%, 100% {
-                opacity: 0;
-            }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Controls */
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            text-align: left;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        label {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
         }
+
+        select {
+            background: transparent;
+            border: 1px solid currentColor;
+            color: currentColor;
+            padding: 8px 12px;
+            font-family: 'Cutive Mono', monospace;
+            font-size: 1rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            outline: none;
+            width: 100%;
+            appearance: none;
+        }
+
+        select:hover { opacity: 0.8; }
+
+        .select-wrapper { position: relative; width: 100%; }
+        .select-wrapper::after {
+            content: '▼';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            font-size: 0.7em;
+        }
+
+        /* Instructions */
+        .instructions {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            text-align: right;
+            z-index: 10;
+            color: white;
+            mix-blend-mode: difference;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+
+        /* Left Header Text */
+        .left-header {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            text-align: left;
+            z-index: 10;
+            color: white;
+            mix-blend-mode: difference;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Footer Left Text */
+        .footer-left {
+            position: fixed;
+            bottom: 40px;
+            left: 40px;
+            text-align: left;
+            z-index: 10;
+            color: white;
+            mix-blend-mode: difference;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
     </style>
 </head>
 <body>
-    <canvas id="canvas"></canvas>
-    <div class="content">
-        <h1>under construction<span class="caret"></span></h1>
+
+    <div id="canvas-container"></div>
+
+    <div class="left-header" id="left-header">
+        SPACEFARM<br>2026
     </div>
 
-    <script>
-        const canvas = document.getElementById('canvas');
-        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    <div class="footer-left" id="footer-left">
+        ALL RIGHTS RESERVED
+    </div>
 
-        if (!gl) {
-            console.error('WebGL not supported');
-        }
+    <div class="title-block" id="main-title">
+        <h1>Under Construction</h1>
+        <div class="subtitle typing-cursor" id="system-message">System Rendering...</div>
+    </div>
 
-        // Vertex shader
-        const vertexShaderSource = `
-            attribute vec2 a_position;
-            void main() {
-                gl_Position = vec4(a_position, 0.0, 1.0);
+    <div class="instructions" id="instructions">
+        DRAG TO ROTATE VIEW<br>
+        SCROLL TO ZOOM
+    </div>
+
+    <div id="ui-layer">
+        <!-- Monitor Select -->
+        <div class="control-group">
+            <label for="monitor-select">Monitor</label>
+            <div class="select-wrapper">
+                <select id="monitor-select">
+                    <option value="macintosh">Macintosh</option>
+                    <option value="ibm5151">IBM 5151</option>
+                    <option value="zenith">Zenith ZVM 1240</option>
+                    <option value="commodore">Commodore 1084</option>
+                    <option value="ibm8503">IBM 8503</option>
+                    <option value="lcd">LCD</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Output Select -->
+        <div class="control-group">
+            <label for="output-select">Output</label>
+            <div class="select-wrapper">
+                <select id="output-select">
+                    <option value="smooth">Smooth (Default)</option>
+                    <option value="sharp">Sharp</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Import Map -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
             }
-        `;
+        }
+    </script>
 
-        // Five different shader variations
-        const shaderVariations = [
-            // Shader 1: Fractal waves (original)
-            `
-            precision mediump float;
-            uniform vec2 u_resolution;
-            uniform float u_time;
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
+        import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+        import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
-            void main() {
-                vec2 uv = (gl_FragCoord.xy * 2.0 - u_resolution.xy) / u_resolution.y;
-                vec2 uv0 = uv;
-                vec3 finalColor = vec3(0.0);
+        // --- Monitor Presets (Exact Hex) ---
+        const PRESETS = {
+            macintosh: {
+                // "Dirty Ice" - Slight greenish hue
+                light: new THREE.Color(0xE0E5DC),
+                dark: new THREE.Color(0x2D332D),
+                threshold: 0.5
+            },
+            ibm5151: {
+                // Classic Phosphor Green
+                light: new THREE.Color(0x33FF33),
+                dark: new THREE.Color(0x002200),
+                threshold: 0.5
+            },
+            zenith: {
+                // Amber
+                light: new THREE.Color(0xFFB000),
+                dark: new THREE.Color(0x2D1B00),
+                threshold: 0.5
+            },
+            commodore: {
+                // C64-ish Blue Tint
+                light: new THREE.Color(0x88CCFF),
+                dark: new THREE.Color(0x000055),
+                threshold: 0.45
+            },
+            ibm8503: {
+                // Stark Black and White
+                light: new THREE.Color(0xFFFFFF),
+                dark: new THREE.Color(0x050505),
+                threshold: 0.6
+            },
+            lcd: {
+                // Lower contrast, smoother greyish
+                light: new THREE.Color(0xC0C5CE),
+                dark: new THREE.Color(0x1D1F21),
+                threshold: 0.5
+            }
+        };
 
-                vec3 brandPurple = vec3(0.486, 0.228, 0.929);
+        // --- Configuration ---
+        let currentPreset = PRESETS.macintosh;
+        let currentOutput = 'smooth';
+        let logoTexture = null; // Defined at top level to avoid ReferenceError
+        let logoGroup = null;
 
-                for (float i = 0.0; i < 4.0; i++) {
-                    uv = fract(uv * 1.5) - 0.5;
-                    float d = length(uv) * exp(-length(uv0));
-                    d = sin(d * 8.0 + u_time) / 8.0;
-                    d = abs(d);
-                    d = pow(0.01 / d, 1.2);
-                    finalColor += vec3(1.0, 1.0, 1.0) * d;
+        // --- Scene Setup ---
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x808080);
+
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+        camera.position.set(0, 0, 7);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: false });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 1.0;
+
+        // --- Lighting ---
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+        scene.add(ambientLight);
+
+        const dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
+        dirLight.position.set(10, 10, 5);
+        scene.add(dirLight);
+
+        const pointLight = new THREE.PointLight(0xffffff, 1);
+        pointLight.position.set(-5, 0, 2);
+        scene.add(pointLight);
+
+        // --- Objects ---
+
+        // 1. Logo (3D Text)
+        logoGroup = new THREE.Group();
+        scene.add(logoGroup);
+
+        const loader = new FontLoader();
+        loader.load('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/fonts/helvetiker_bold.typeface.json', function (font) {
+            const textGeo = new TextGeometry('SPACEFARM', {
+                font: font,
+                size: 1.2,
+                height: 0.2,
+                curveSegments: 4,
+                bevelEnabled: false
+            });
+
+            textGeo.computeBoundingBox();
+            const centerOffset = - 0.5 * (textGeo.boundingBox.max.x - textGeo.boundingBox.min.x);
+            textGeo.translate(centerOffset, -0.4, 0);
+
+            // Use MeshLambertMaterial so it reacts to light like the debris
+            const textMaterial = new THREE.MeshLambertMaterial({ color: 0xffffff });
+            const textMesh = new THREE.Mesh(textGeo, textMaterial);
+            logoGroup.add(textMesh);
+        });
+
+        // 2. Floating Debris
+        const debrisGroup = new THREE.Group();
+        const debrisMaterial = new THREE.MeshLambertMaterial({ color: 0xffffff });
+
+        // --- Post Processing ---
+        const composer = new EffectComposer(renderer);
+        const renderPass = new RenderPass(scene, camera);
+        composer.addPass(renderPass);
+
+        // Custom Dither Shader
+        const DitherShader = {
+            uniforms: {
+                'tDiffuse': { value: null },
+                'uResolution': { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+                'uLightColor': { value: currentPreset.light },
+                'uDarkColor': { value: currentPreset.dark },
+                'uThreshold': { value: currentPreset.threshold },
+                'uPixelSize': { value: 1.0 } // Controlled by Output
+            },
+            vertexShader: `
+                varying vec2 vUv;
+                void main() {
+                    vUv = uv;
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                }
+            `,
+            fragmentShader: `
+                uniform sampler2D tDiffuse;
+                uniform vec2 uResolution;
+                uniform vec3 uLightColor;
+                uniform vec3 uDarkColor;
+                uniform float uThreshold;
+                uniform float uPixelSize;
+
+                varying vec2 vUv;
+
+                // 4x4 Bayer Matrix
+                float bayer4x4(vec2 p) {
+                    int x = int(mod(p.x, 4.0));
+                    int y = int(mod(p.y, 4.0));
+                    if (x == 0) { if (y == 0) return 0.0/16.0; if (y == 1) return 12.0/16.0; if (y == 2) return 3.0/16.0; return 15.0/16.0; }
+                    if (x == 1) { if (y == 0) return 8.0/16.0; if (y == 1) return 4.0/16.0; if (y == 2) return 11.0/16.0; return 7.0/16.0; }
+                    if (x == 2) { if (y == 0) return 2.0/16.0; if (y == 1) return 14.0/16.0; if (y == 2) return 1.0/16.0; return 13.0/16.0; }
+                    if (x == 3) { if (y == 0) return 10.0/16.0; if (y == 1) return 6.0/16.0; if (y == 2) return 9.0/16.0; return 5.0/16.0; }
+                    return 0.0;
                 }
 
-                finalColor = finalColor * 0.15 + brandPurple * 0.3;
-                gl_FragColor = vec4(finalColor, 1.0);
-            }
-            `,
+                void main() {
+                    // Pixelize coordinate
+                    vec2 pixelCoord = floor(gl_FragCoord.xy / uPixelSize);
 
-            // Shader 2: Grid lattice
-            `
-            precision mediump float;
-            uniform vec2 u_resolution;
-            uniform float u_time;
+                    // Sample texture
+                    vec4 texel = texture2D(tDiffuse, vUv);
 
-            void main() {
-                vec2 uv = gl_FragCoord.xy / u_resolution.xy;
-                vec3 brandPurple = vec3(0.486, 0.228, 0.929);
+                    float lum = dot(texel.rgb, vec3(0.299, 0.587, 0.114));
+                    float ditherValue = bayer4x4(pixelCoord);
 
-                vec2 grid = fract(uv * 10.0 + u_time * 0.1);
-                float pattern = smoothstep(0.0, 0.05, grid.x) * smoothstep(0.0, 0.05, grid.y);
-                pattern *= smoothstep(1.0, 0.95, grid.x) * smoothstep(1.0, 0.95, grid.y);
-
-                vec3 finalColor = mix(brandPurple * 0.3, vec3(1.0), pattern * 0.4);
-                gl_FragColor = vec4(finalColor, 1.0);
-            }
-            `,
-
-            // Shader 3: Radial waves
-            `
-            precision mediump float;
-            uniform vec2 u_resolution;
-            uniform float u_time;
-
-            void main() {
-                vec2 uv = (gl_FragCoord.xy * 2.0 - u_resolution.xy) / u_resolution.y;
-                vec3 brandPurple = vec3(0.486, 0.228, 0.929);
-
-                float d = length(uv);
-                float wave = sin(d * 10.0 - u_time * 2.0) * 0.5 + 0.5;
-                wave = pow(wave, 3.0);
-
-                vec3 finalColor = mix(brandPurple * 0.3, vec3(1.0), wave * 0.3);
-                gl_FragColor = vec4(finalColor, 1.0);
-            }
-            `,
-
-            // Shader 4: Organic noise
-            `
-            precision mediump float;
-            uniform vec2 u_resolution;
-            uniform float u_time;
-
-            float random(vec2 st) {
-                return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
-            }
-
-            float noise(vec2 st) {
-                vec2 i = floor(st);
-                vec2 f = fract(st);
-                float a = random(i);
-                float b = random(i + vec2(1.0, 0.0));
-                float c = random(i + vec2(0.0, 1.0));
-                float d = random(i + vec2(1.0, 1.0));
-                vec2 u = f * f * (3.0 - 2.0 * f);
-                return mix(a, b, u.x) + (c - a)* u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
-            }
-
-            void main() {
-                vec2 uv = gl_FragCoord.xy / u_resolution.xy;
-                vec3 brandPurple = vec3(0.486, 0.228, 0.929);
-
-                float n = noise(uv * 5.0 + u_time * 0.2);
-                n += 0.5 * noise(uv * 10.0 + u_time * 0.3);
-                n /= 1.5;
-
-                vec3 finalColor = mix(brandPurple * 0.3, vec3(1.0), n * 0.3);
-                gl_FragColor = vec4(finalColor, 1.0);
-            }
-            `,
-
-            // Shader 5: Geometric triangular
-            `
-            precision mediump float;
-            uniform vec2 u_resolution;
-            uniform float u_time;
-
-            void main() {
-                vec2 uv = gl_FragCoord.xy / u_resolution.xy;
-                vec3 brandPurple = vec3(0.486, 0.228, 0.929);
-
-                vec2 pos = uv * 8.0 + u_time * 0.1;
-                vec2 cell = fract(pos);
-
-                float pattern = 0.0;
-                if (cell.x + cell.y < 1.0) {
-                    pattern = smoothstep(0.95, 1.0, cell.x + cell.y);
-                } else {
-                    pattern = smoothstep(0.95, 1.0, 2.0 - cell.x - cell.y);
+                    vec3 finalColor = (lum < ditherValue) ? uDarkColor : uLightColor;
+                    gl_FragColor = vec4(finalColor, 1.0);
                 }
-
-                vec3 finalColor = mix(brandPurple * 0.3, vec3(1.0), pattern * 0.5);
-                gl_FragColor = vec4(finalColor, 1.0);
-            }
             `
-        ];
+        };
 
-        // Select a random shader on page load
-        const selectedShaderIndex = Math.floor(Math.random() * shaderVariations.length);
-        const fragmentShaderSource = shaderVariations[selectedShaderIndex];
+        const ditherPass = new ShaderPass(DitherShader);
+        composer.addPass(ditherPass);
 
-        function createShader(gl, type, source) {
-            const shader = gl.createShader(type);
-            gl.shaderSource(shader, source);
-            gl.compileShader(shader);
+        // --- UI Logic ---
+        const monitorSelect = document.getElementById('monitor-select');
+        const outputSelect = document.getElementById('output-select');
+        const uiLayer = document.getElementById('ui-layer');
+        const titleBlock = document.getElementById('main-title');
+        const instructions = document.getElementById('instructions');
+        const leftHeader = document.getElementById('left-header');
+        const footerLeft = document.getElementById('footer-left');
 
-            if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-                console.error('Shader compile error:', gl.getShaderInfoLog(shader));
-                gl.deleteShader(shader);
-                return null;
+        function updateSettings() {
+            // Monitor Colors
+            const preset = PRESETS[monitorSelect.value];
+            ditherPass.uniforms.uLightColor.value = preset.light;
+            ditherPass.uniforms.uDarkColor.value = preset.dark;
+            ditherPass.uniforms.uThreshold.value = preset.threshold;
+
+            // Output Mode (Pixel Size)
+            const outputMode = outputSelect.value;
+            if (outputMode === 'sharp') {
+                ditherPass.uniforms.uPixelSize.value = 2.0; // Chunkier pixels
+                if(logoTexture) {
+                    logoTexture.minFilter = THREE.NearestFilter;
+                    logoTexture.magFilter = THREE.NearestFilter;
+                    logoTexture.needsUpdate = true;
+                }
+            } else {
+                ditherPass.uniforms.uPixelSize.value = 1.0; // Native resolution
+                if(logoTexture) {
+                    logoTexture.minFilter = THREE.LinearFilter;
+                    logoTexture.magFilter = THREE.LinearFilter;
+                    logoTexture.needsUpdate = true;
+                }
             }
 
-            return shader;
+            // Update UI Colors
+            const lightCss = `#${preset.light.getHexString()}`;
+            uiLayer.style.color = lightCss;
+            uiLayer.style.borderColor = lightCss;
+            titleBlock.style.color = lightCss;
+            instructions.style.color = lightCss;
+            leftHeader.style.color = lightCss;
+            footerLeft.style.color = lightCss;
+
+            // Update dropdown borders
+            document.querySelectorAll('select').forEach(el => {
+                el.style.borderColor = lightCss;
+            });
         }
 
-        function createProgram(gl, vertexShader, fragmentShader) {
-            const program = gl.createProgram();
-            gl.attachShader(program, vertexShader);
-            gl.attachShader(program, fragmentShader);
-            gl.linkProgram(program);
+        monitorSelect.addEventListener('change', updateSettings);
+        outputSelect.addEventListener('change', updateSettings);
 
-            if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-                console.error('Program link error:', gl.getProgramInfoLog(program));
-                gl.deleteProgram(program);
-                return null;
+        // Init
+        updateSettings();
+
+
+        // --- Animation Loop ---
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+
+            if (logoGroup) {
+                const time = Date.now() * 0.001;
+                logoGroup.position.y = Math.sin(time) * 0.1;
+                logoGroup.rotation.y = Math.sin(time * 0.5) * 0.1;
             }
 
-            return program;
+            debrisGroup.rotation.y += 0.002;
+            debrisGroup.rotation.x += 0.001;
+
+            composer.render();
         }
 
-        const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
-        const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
-        const program = createProgram(gl, vertexShader, fragmentShader);
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            composer.setSize(window.innerWidth, window.innerHeight);
+            ditherPass.uniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
+        });
 
-        const positionAttributeLocation = gl.getAttribLocation(program, 'a_position');
-        const resolutionUniformLocation = gl.getUniformLocation(program, 'u_resolution');
-        const timeUniformLocation = gl.getUniformLocation(program, 'u_time');
+        animate();
 
-        const positionBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-
-        const positions = [
-            -1, -1,
-             1, -1,
-            -1,  1,
-            -1,  1,
-             1, -1,
-             1,  1,
-        ];
-
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
-
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            gl.viewport(0, 0, canvas.width, canvas.height);
-        }
-
-        window.addEventListener('resize', resize);
-        resize();
-
-        function render(time) {
-            time *= 0.001; // Convert to seconds
-
-            gl.clearColor(0, 0, 0, 1);
-            gl.clear(gl.COLOR_BUFFER_BIT);
-
-            gl.useProgram(program);
-
-            gl.enableVertexAttribArray(positionAttributeLocation);
-            gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-            gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
-
-            gl.uniform2f(resolutionUniformLocation, canvas.width, canvas.height);
-            gl.uniform1f(timeUniformLocation, time);
-
-            gl.drawArrays(gl.TRIANGLES, 0, 6);
-
-            requestAnimationFrame(render);
-        }
-
-        requestAnimationFrame(render);
     </script>
 </body>
 </html>
