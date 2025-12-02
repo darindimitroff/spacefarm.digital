@@ -216,8 +216,8 @@
             <label for="output-select">Output</label>
             <div class="select-wrapper">
                 <select id="output-select">
-                    <option value="smooth">Smooth (Default)</option>
-                    <option value="sharp">Sharp</option>
+                    <option value="smooth">Smooth</option>
+                    <option value="sharp" selected>Sharp (Default)</option>
                 </select>
             </div>
         </div>
@@ -284,7 +284,7 @@
 
         // --- Configuration ---
         let currentPreset = PRESETS.macintosh;
-        let currentOutput = 'smooth';
+        let currentOutput = 'sharp';
         let logoTexture = null; // Defined at top level to avoid ReferenceError
         let logoGroup = null;
 
