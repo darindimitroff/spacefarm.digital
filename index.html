@@ -679,10 +679,11 @@
             const bgColor = useLightTheme ? `#${preset.light.getHexString()}` : '#000';
             document.body.style.backgroundColor = bgColor;
 
-            // Update UI layer - keep transparent with white text/border (matches logo)
+            // Update UI layer - transparent with foreground color (matches bright logo color)
+            const foregroundColor = `#${preset.light.getHexString()}`;
             uiLayer.style.backgroundColor = 'transparent';
-            uiLayer.style.color = '#ffffff';
-            uiLayer.style.borderColor = '#ffffff';
+            uiLayer.style.color = foregroundColor;
+            uiLayer.style.borderColor = foregroundColor;
 
             // Update other UI elements with preset dark color for visibility
             const textColor = `#${preset.dark.getHexString()}`;
@@ -691,9 +692,9 @@
             leftHeader.style.color = textColor;
             footerLeft.style.color = textColor;
 
-            // Update dropdown borders to white (matches UI layer)
+            // Update dropdown borders to foreground color (matches UI layer)
             document.querySelectorAll('select').forEach(el => {
-                el.style.borderColor = '#ffffff';
+                el.style.borderColor = foregroundColor;
             });
 
             // Update meta theme-color
