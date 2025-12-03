@@ -682,10 +682,9 @@
             const bgColor = useLightTheme ? `#${preset.light.getHexString()}` : '#000';
             document.body.style.backgroundColor = bgColor;
 
-            // Update UI layer - background color with foreground text
+            // Update UI layer - use same background as site, with foreground text
             const foregroundColor = `#${preset.light.getHexString()}`;
-            const backgroundColor = `#${preset.dark.getHexString()}`;
-            uiLayer.style.backgroundColor = backgroundColor;
+            uiLayer.style.backgroundColor = bgColor;
             uiLayer.style.color = foregroundColor;
             uiLayer.style.borderColor = foregroundColor;
 
