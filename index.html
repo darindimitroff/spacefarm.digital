@@ -68,10 +68,10 @@
             z-index: 10;
             text-align: center;
             background: transparent;
-            padding: 15px 25px;
-            border: 2px solid #ffffff;
-            color: #ffffff;
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            padding: 0;
+            border: none;
+            color: currentColor;
+            box-shadow: none;
             transition: color 0.3s, border-color 0.3s;
             display: flex;
             flex-direction: column;
@@ -86,7 +86,7 @@
             transform: translateX(-50%);
             z-index: 10;
             pointer-events: none;
-            color: white; /* Overridden by JS */
+            color: currentColor;
             text-align: center;
             width: 80%;
         }
@@ -134,8 +134,8 @@
 
         select {
             background: transparent;
-            border: 1px solid currentColor;
-            color: currentColor;
+            border: 1px solid;
+            color: inherit;
             padding: 8px 12px;
             font-family: 'Cutive Mono', monospace;
             font-size: 1rem;
@@ -166,7 +166,7 @@
             right: 40px;
             text-align: right;
             z-index: 10;
-            color: white;
+            color: currentColor;
             font-size: 0.8rem;
             line-height: 1.5;
         }
@@ -178,7 +178,7 @@
             left: 40px;
             text-align: left;
             z-index: 10;
-            color: white;
+            color: currentColor;
             font-size: 0.8rem;
             line-height: 1.5;
             text-transform: uppercase;
@@ -192,7 +192,7 @@
             left: 40px;
             text-align: left;
             z-index: 10;
-            color: white;
+            color: currentColor;
             font-size: 0.8rem;
             line-height: 1.5;
             text-transform: uppercase;
@@ -203,6 +203,14 @@
         @media (max-width: 768px) {
             .footer-left {
                 display: none;
+            }
+
+            .instructions {
+                top: auto;
+                bottom: 40px;
+                right: auto;
+                left: 40px;
+                text-align: left;
             }
         }
 
@@ -217,7 +225,7 @@
     </div>
 
     <div class="footer-left" id="footer-left">
-        ALL RIGHTS RESERVED
+        NO RIGHTS RESERVED
     </div>
 
     <div class="title-block" id="main-title">
@@ -654,6 +662,7 @@
         function updateSettings() {
             // Get themed preset (inverted for light mode)
             const preset = getThemedPreset(monitorSelect.value);
+            const basePreset = PRESETS[monitorSelect.value];
             const useLightTheme = shouldUseLightTheme();
 
             // Monitor Colors
@@ -685,20 +694,13 @@
             const bgColor = useLightTheme ? `#${preset.light.getHexString()}` : `#${preset.dark.getHexString()}`;
             document.body.style.backgroundColor = bgColor;
 
-            // Update UI layer - use same background as body for all graphics modes
-            const foregroundColor = useLightTheme ? `#${preset.dark.getHexString()}` : `#${preset.light.getHexString()}`;
-            uiLayer.style.backgroundColor = bgColor;
-            uiLayer.style.color = foregroundColor;
-            uiLayer.style.borderColor = foregroundColor;
+            // Update foreground color for all UI elements
+            // In light mode: use original dark color (provides contrast on light bg)
+            // In dark mode: use inverted light color (the bright phosphor glow)
+            const foregroundColor = useLightTheme ? `#${basePreset.dark.getHexString()}` : `#${preset.light.getHexString()}`;
+            document.body.style.color = foregroundColor;
 
-            // Update all text elements with foreground color
-            const textColor = foregroundColor;
-            titleBlock.style.color = textColor;
-            instructions.style.color = textColor;
-            leftHeader.style.color = textColor;
-            footerLeft.style.color = textColor;
-
-            // Update dropdown borders to foreground color (matches UI layer)
+            // Update dropdown borders and text to foreground color (matches UI layer)
             document.querySelectorAll('select').forEach(el => {
                 el.style.borderColor = foregroundColor;
             });
