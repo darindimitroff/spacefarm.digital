@@ -340,16 +340,34 @@
         controls.autoRotateSpeed = 1.0;
 
         // --- Lighting ---
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+        // Increased ambient light for overall illumination
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
         scene.add(ambientLight);
 
+        // Front-upper-right directional light
         const dirLight = new THREE.DirectionalLight(0xffffff, 1.5);
         dirLight.position.set(10, 10, 5);
         scene.add(dirLight);
 
+        // Left-front point light
         const pointLight = new THREE.PointLight(0xffffff, 1);
         pointLight.position.set(-5, 0, 2);
         scene.add(pointLight);
+
+        // Back light to illuminate the back of the logo
+        const backLight = new THREE.DirectionalLight(0xffffff, 1.2);
+        backLight.position.set(-10, 5, -5);
+        scene.add(backLight);
+
+        // Bottom light to illuminate the underside
+        const bottomLight = new THREE.PointLight(0xffffff, 0.8);
+        bottomLight.position.set(0, -5, 0);
+        scene.add(bottomLight);
+
+        // Right side light for even coverage
+        const rightLight = new THREE.PointLight(0xffffff, 0.8);
+        rightLight.position.set(5, 0, 2);
+        scene.add(rightLight);
 
         // --- Objects ---
 
