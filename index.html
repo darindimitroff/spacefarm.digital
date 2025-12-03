@@ -275,36 +275,36 @@
         import { FontLoader } from 'three/addons/loaders/FontLoader.js';
         import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
-        // --- Monitor Presets (Exact Hex) ---
+        // --- Monitor Presets (Exact Obra Dinn Colors) ---
         const PRESETS = {
             macintosh: {
-                // "Dirty Ice" - Slight greenish hue
-                light: new THREE.Color(0xE0E5DC),
-                dark: new THREE.Color(0x2D332D),
+                // Macintosh - Slightly greenish white on dark olive
+                light: new THREE.Color(0xe5ffff),
+                dark: new THREE.Color(0x333319),
                 threshold: 0.5
             },
             ibm5151: {
-                // Classic Phosphor Green
-                light: new THREE.Color(0x33FF33),
-                dark: new THREE.Color(0x002200),
+                // IBM 5151 - Classic Phosphor Green
+                light: new THREE.Color(0x01eb5f),
+                dark: new THREE.Color(0x25342f),
                 threshold: 0.5
             },
             zenith: {
-                // Amber
-                light: new THREE.Color(0xFFB000),
-                dark: new THREE.Color(0x2D1B00),
+                // Zenith ZVM 1240 - Amber phosphor
+                light: new THREE.Color(0xffa652),
+                dark: new THREE.Color(0x1d1508),
                 threshold: 0.5
             },
             commodore: {
-                // C64-ish Blue Tint
-                light: new THREE.Color(0x88CCFF),
-                dark: new THREE.Color(0x000055),
+                // Commodore 1084 - Blue tint
+                light: new THREE.Color(0x88d7de),
+                dark: new THREE.Color(0x40318e),
                 threshold: 0.45
             },
             ibm8503: {
-                // Stark Black and White
-                light: new THREE.Color(0xFFFFFF),
-                dark: new THREE.Color(0x050505),
+                // IBM 8503 - Near black and white
+                light: new THREE.Color(0xebe5ce),
+                dark: new THREE.Color(0x2e3037),
                 threshold: 0.6
             },
             lcd: {
