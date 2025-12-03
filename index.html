@@ -678,14 +678,13 @@
                 }
             }
 
-            // Update background color based on theme
-            const bgColor = useLightTheme ? `#${preset.light.getHexString()}` : '#000';
+            // Update background color based on theme - use preset's background color
+            const bgColor = useLightTheme ? `#${preset.light.getHexString()}` : `#${preset.dark.getHexString()}`;
             document.body.style.backgroundColor = bgColor;
 
-            // Update UI layer - use consistent background for all graphics modes
-            const foregroundColor = `#${preset.light.getHexString()}`;
-            const pickerBgColor = useLightTheme ? '#ffffff' : '#000';
-            uiLayer.style.backgroundColor = pickerBgColor;
+            // Update UI layer - use same background as body for all graphics modes
+            const foregroundColor = useLightTheme ? `#${preset.dark.getHexString()}` : `#${preset.light.getHexString()}`;
+            uiLayer.style.backgroundColor = bgColor;
             uiLayer.style.color = foregroundColor;
             uiLayer.style.borderColor = foregroundColor;
 
