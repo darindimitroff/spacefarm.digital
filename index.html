@@ -512,7 +512,8 @@
                 'uLightColor': { value: currentPreset.light },
                 'uDarkColor': { value: currentPreset.dark },
                 'uThreshold': { value: currentPreset.threshold },
-                'uPixelSize': { value: 1.0 } // Controlled by Output
+                'uPixelSize': { value: 1.0 }, // Controlled by Output
+                'uDitherScale': { value: 2.0 } // Scale of dither pattern
             },
             vertexShader: `
                 varying vec2 vUv;
@@ -528,6 +529,7 @@
                 uniform vec3 uDarkColor;
                 uniform float uThreshold;
                 uniform float uPixelSize;
+                uniform float uDitherScale;
 
                 varying vec2 vUv;
 
@@ -546,13 +548,32 @@
                     // Pixelize coordinate
                     vec2 pixelCoord = floor(gl_FragCoord.xy / uPixelSize);
 
-                    // Sample texture
-                    vec4 texel = texture2D(tDiffuse, vUv);
+                    // Scale the dither pattern
+                    vec2 ditherCoord = floor(pixelCoord / uDitherScale);
+
+                    // Sample texture with pixelization
+                    vec2 pixelUv = floor(vUv * uResolution / uPixelSize) / (uResolution / uPixelSize);
+                    vec4 texel = texture2D(tDiffuse, pixelUv);
 
                     float lum = dot(texel.rgb, vec3(0.299, 0.587, 0.114));
-                    float ditherValue = bayer4x4(pixelCoord);
 
-                    vec3 finalColor = (lum < ditherValue) ? uDarkColor : uLightColor;
+                    // Solid colors for darks and lights, dither only mid-tones
+                    // This matches Obra Dinn's aesthetic: solid blacks and whites dominate
+                    vec3 finalColor;
+                    if (lum < 0.3) {
+                        // Dark areas: solid dark color
+                        finalColor = uDarkColor;
+                    } else if (lum > 0.7) {
+                        // Light areas: solid light color
+                        finalColor = uLightColor;
+                    } else {
+                        // Mid-tones: use dithering
+                        float ditherValue = bayer4x4(ditherCoord);
+                        // Remap luminance from [0.3, 0.7] to [0, 1] for dithering
+                        float remappedLum = (lum - 0.3) / 0.4;
+                        finalColor = (remappedLum < ditherValue) ? uDarkColor : uLightColor;
+                    }
+
                     gl_FragColor = vec4(finalColor, 1.0);
                 }
             `
@@ -580,14 +601,16 @@
             // Output Mode (Pixel Size)
             const outputMode = outputSelect.value;
             if (outputMode === 'sharp') {
-                ditherPass.uniforms.uPixelSize.value = 2.0; // Chunkier pixels
+                ditherPass.uniforms.uPixelSize.value = 2.0; // Moderate pixel blocks
+                ditherPass.uniforms.uDitherScale.value = 2.0; // Moderate dither pattern
                 if(logoTexture) {
                     logoTexture.minFilter = THREE.NearestFilter;
                     logoTexture.magFilter = THREE.NearestFilter;
                     logoTexture.needsUpdate = true;
                 }
             } else {
-                ditherPass.uniforms.uPixelSize.value = 1.0; // Native resolution
+                ditherPass.uniforms.uPixelSize.value = 1.0; // Smooth resolution
+                ditherPass.uniforms.uDitherScale.value = 1.5; // Subtle dither scaling
                 if(logoTexture) {
                     logoTexture.minFilter = THREE.LinearFilter;
                     logoTexture.magFilter = THREE.LinearFilter;
