@@ -405,7 +405,8 @@
                 this.lifetime = 0;
                 this.maxLifetime = 120; // ~2 seconds at 60fps
 
-                debrisGroup.add(this.mesh);
+                // Add to scene directly to avoid rotation drift from debrisGroup
+                scene.add(this.mesh);
             }
 
             update() {
@@ -436,7 +437,7 @@
             }
 
             destroy() {
-                debrisGroup.remove(this.mesh);
+                scene.remove(this.mesh);
                 this.mesh.geometry.dispose();
                 this.mesh.material.dispose();
             }
