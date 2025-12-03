@@ -315,6 +315,42 @@
             }
         };
 
+        // --- Theme Detection ---
+        // Determine if light theme should be used based on system preference or time of day
+        function shouldUseLightTheme() {
+            // Check if system has a color scheme preference
+            if (window.matchMedia) {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+                const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
+
+                // If user has explicit preference, use it
+                if (prefersDark.matches) return false;
+                if (prefersLight.matches) return true;
+            }
+
+            // No system preference - use time of day
+            // Light theme during daytime (6 AM to 6 PM), dark theme at night
+            const hour = new Date().getHours();
+            return hour >= 6 && hour < 18;
+        }
+
+        // Get preset with colors inverted for light theme
+        function getThemedPreset(presetName) {
+            const basePreset = PRESETS[presetName];
+            const useLightTheme = shouldUseLightTheme();
+
+            if (useLightTheme) {
+                // Invert colors for light theme
+                return {
+                    light: basePreset.dark.clone(),
+                    dark: basePreset.light.clone(),
+                    threshold: basePreset.threshold
+                };
+            }
+
+            return basePreset;
+        }
+
         // --- Configuration ---
         let currentPreset = PRESETS.macintosh;
         let currentOutput = 'sharp';
@@ -610,8 +646,11 @@
         const footerLeft = document.getElementById('footer-left');
 
         function updateSettings() {
+            // Get themed preset (inverted for light mode)
+            const preset = getThemedPreset(monitorSelect.value);
+            const useLightTheme = shouldUseLightTheme();
+
             // Monitor Colors
-            const preset = PRESETS[monitorSelect.value];
             ditherPass.uniforms.uLightColor.value = preset.light;
             ditherPass.uniforms.uDarkColor.value = preset.dark;
             ditherPass.uniforms.uThreshold.value = preset.threshold;
@@ -636,23 +675,47 @@
                 }
             }
 
-            // Update UI Colors
-            const lightCss = `#${preset.light.getHexString()}`;
-            uiLayer.style.color = lightCss;
-            uiLayer.style.borderColor = lightCss;
-            titleBlock.style.color = lightCss;
-            instructions.style.color = lightCss;
-            leftHeader.style.color = lightCss;
-            footerLeft.style.color = lightCss;
+            // Update background color based on theme
+            const bgColor = useLightTheme ? `#${preset.light.getHexString()}` : '#000';
+            document.body.style.backgroundColor = bgColor;
+
+            // Update UI layer background based on theme
+            const uiLayerBg = useLightTheme ? 'rgba(255, 255, 255, 0.85)' : 'rgba(0, 0, 0, 0.85)';
+            uiLayer.style.backgroundColor = uiLayerBg;
+
+            // Update UI Colors (text should be dark color in both themes for visibility)
+            const textColor = `#${preset.dark.getHexString()}`;
+            uiLayer.style.color = textColor;
+            uiLayer.style.borderColor = textColor;
+            titleBlock.style.color = textColor;
+            instructions.style.color = textColor;
+            leftHeader.style.color = textColor;
+            footerLeft.style.color = textColor;
 
             // Update dropdown borders
             document.querySelectorAll('select').forEach(el => {
-                el.style.borderColor = lightCss;
+                el.style.borderColor = textColor;
             });
+
+            // Update meta theme-color
+            const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+            if (metaThemeColor) {
+                metaThemeColor.setAttribute('content', bgColor);
+            }
         }
 
         monitorSelect.addEventListener('change', updateSettings);
         outputSelect.addEventListener('change', updateSettings);
+
+        // Listen for system color scheme changes
+        if (window.matchMedia) {
+            const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            const lightModeQuery = window.matchMedia('(prefers-color-scheme: light)');
+
+            // Update theme when system preference changes
+            darkModeQuery.addEventListener('change', updateSettings);
+            lightModeQuery.addEventListener('change', updateSettings);
+        }
 
         // Init
         updateSettings();
