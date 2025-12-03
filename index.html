@@ -487,12 +487,9 @@
             // Cast ray from camera through mouse position
             raycaster.setFromCamera(mouse, camera);
 
-            // Create a point in 3D space at a fixed distance from camera
-            const distance = 5;
-            const direction = new THREE.Vector3();
-            raycaster.ray.direction.normalize();
-            direction.copy(raycaster.ray.direction).multiplyScalar(distance);
-            const clickPosition = camera.position.clone().add(direction);
+            // Get point along the ray at a fixed distance (5 units from camera)
+            const clickPosition = new THREE.Vector3();
+            raycaster.ray.at(5, clickPosition);
 
             // Create firework at that position
             createFirework(clickPosition);
