@@ -512,7 +512,8 @@
                 'uLightColor': { value: currentPreset.light },
                 'uDarkColor': { value: currentPreset.dark },
                 'uThreshold': { value: currentPreset.threshold },
-                'uPixelSize': { value: 1.0 } // Controlled by Output
+                'uPixelSize': { value: 1.0 }, // Controlled by Output
+                'uDitherScale': { value: 2.0 } // Scale of dither pattern
             },
             vertexShader: `
                 varying vec2 vUv;
@@ -528,6 +529,7 @@
                 uniform vec3 uDarkColor;
                 uniform float uThreshold;
                 uniform float uPixelSize;
+                uniform float uDitherScale;
 
                 varying vec2 vUv;
 
@@ -543,14 +545,18 @@
                 }
 
                 void main() {
-                    // Pixelize coordinate
+                    // Pixelize coordinate with larger blocks
                     vec2 pixelCoord = floor(gl_FragCoord.xy / uPixelSize);
 
-                    // Sample texture
-                    vec4 texel = texture2D(tDiffuse, vUv);
+                    // Scale down the dither pattern to make it chunkier
+                    vec2 ditherCoord = floor(pixelCoord / uDitherScale);
+
+                    // Sample texture at pixelized UV
+                    vec2 pixelUv = floor(vUv * uResolution / uPixelSize) / (uResolution / uPixelSize);
+                    vec4 texel = texture2D(tDiffuse, pixelUv);
 
                     float lum = dot(texel.rgb, vec3(0.299, 0.587, 0.114));
-                    float ditherValue = bayer4x4(pixelCoord);
+                    float ditherValue = bayer4x4(ditherCoord);
 
                     vec3 finalColor = (lum < ditherValue) ? uDarkColor : uLightColor;
                     gl_FragColor = vec4(finalColor, 1.0);
@@ -580,14 +586,16 @@
             // Output Mode (Pixel Size)
             const outputMode = outputSelect.value;
             if (outputMode === 'sharp') {
-                ditherPass.uniforms.uPixelSize.value = 2.0; // Chunkier pixels
+                ditherPass.uniforms.uPixelSize.value = 3.0; // Much chunkier pixels like Obra Dinn
+                ditherPass.uniforms.uDitherScale.value = 3.0; // Larger dither blocks
                 if(logoTexture) {
                     logoTexture.minFilter = THREE.NearestFilter;
                     logoTexture.magFilter = THREE.NearestFilter;
                     logoTexture.needsUpdate = true;
                 }
             } else {
-                ditherPass.uniforms.uPixelSize.value = 1.0; // Native resolution
+                ditherPass.uniforms.uPixelSize.value = 1.5; // Slightly pixelized
+                ditherPass.uniforms.uDitherScale.value = 2.0; // Medium dither blocks
                 if(logoTexture) {
                     logoTexture.minFilter = THREE.LinearFilter;
                     logoTexture.magFilter = THREE.LinearFilter;
