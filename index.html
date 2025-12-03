@@ -87,7 +87,6 @@
             z-index: 10;
             pointer-events: none;
             color: white; /* Overridden by JS */
-            mix-blend-mode: difference;
             text-align: center;
             width: 80%;
         }
@@ -168,7 +167,6 @@
             text-align: right;
             z-index: 10;
             color: white;
-            mix-blend-mode: difference;
             font-size: 0.8rem;
             line-height: 1.5;
         }
@@ -181,7 +179,6 @@
             text-align: left;
             z-index: 10;
             color: white;
-            mix-blend-mode: difference;
             font-size: 0.8rem;
             line-height: 1.5;
             text-transform: uppercase;
@@ -196,11 +193,17 @@
             text-align: left;
             z-index: 10;
             color: white;
-            mix-blend-mode: difference;
             font-size: 0.8rem;
             line-height: 1.5;
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .footer-left {
+                display: none;
+            }
         }
 
     </style>
@@ -679,14 +682,15 @@
             const bgColor = useLightTheme ? `#${preset.light.getHexString()}` : '#000';
             document.body.style.backgroundColor = bgColor;
 
-            // Update UI layer - transparent with foreground color (matches bright logo color)
+            // Update UI layer - background color with foreground text
             const foregroundColor = `#${preset.light.getHexString()}`;
-            uiLayer.style.backgroundColor = 'transparent';
+            const backgroundColor = `#${preset.dark.getHexString()}`;
+            uiLayer.style.backgroundColor = backgroundColor;
             uiLayer.style.color = foregroundColor;
             uiLayer.style.borderColor = foregroundColor;
 
-            // Update other UI elements with preset dark color for visibility
-            const textColor = `#${preset.dark.getHexString()}`;
+            // Update all text elements with foreground color
+            const textColor = foregroundColor;
             titleBlock.style.color = textColor;
             instructions.style.color = textColor;
             leftHeader.style.color = textColor;
