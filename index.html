@@ -224,7 +224,8 @@
 
     <div class="instructions" id="instructions">
         DRAG TO ROTATE VIEW<br>
-        SCROLL TO ZOOM
+        SCROLL TO ZOOM<br>
+        CLICK FOR FIREWORKS
     </div>
 
     <div id="ui-layer">
@@ -379,6 +380,126 @@
         // 2. Floating Debris
         const debrisGroup = new THREE.Group();
         const debrisMaterial = new THREE.MeshLambertMaterial({ color: 0xffffff });
+        scene.add(debrisGroup);
+
+        // --- Voxel Fireworks System ---
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        const particles = [];
+
+        // Particle class to track individual voxels
+        class Particle {
+            constructor(position, velocity, color) {
+                const size = 0.15 + Math.random() * 0.1; // Random size between 0.15-0.25
+                const geometry = new THREE.BoxGeometry(size, size, size);
+                const material = new THREE.MeshLambertMaterial({ color: color });
+                this.mesh = new THREE.Mesh(geometry, material);
+                this.mesh.position.copy(position);
+
+                this.velocity = velocity;
+                this.rotationSpeed = new THREE.Vector3(
+                    (Math.random() - 0.5) * 0.2,
+                    (Math.random() - 0.5) * 0.2,
+                    (Math.random() - 0.5) * 0.2
+                );
+                this.lifetime = 0;
+                this.maxLifetime = 120; // ~2 seconds at 60fps
+
+                debrisGroup.add(this.mesh);
+            }
+
+            update() {
+                // Apply velocity
+                this.mesh.position.x += this.velocity.x;
+                this.mesh.position.y += this.velocity.y;
+                this.mesh.position.z += this.velocity.z;
+
+                // Apply gravity
+                this.velocity.y -= 0.003;
+
+                // Apply rotation
+                this.mesh.rotation.x += this.rotationSpeed.x;
+                this.mesh.rotation.y += this.rotationSpeed.y;
+                this.mesh.rotation.z += this.rotationSpeed.z;
+
+                // Update lifetime
+                this.lifetime++;
+
+                // Fade out near end of life
+                if (this.lifetime > this.maxLifetime * 0.7) {
+                    const fadeProgress = (this.lifetime - this.maxLifetime * 0.7) / (this.maxLifetime * 0.3);
+                    this.mesh.material.opacity = 1 - fadeProgress;
+                    this.mesh.material.transparent = true;
+                }
+
+                return this.lifetime < this.maxLifetime;
+            }
+
+            destroy() {
+                debrisGroup.remove(this.mesh);
+                this.mesh.geometry.dispose();
+                this.mesh.material.dispose();
+            }
+        }
+
+        // Create firework explosion at a 3D position
+        function createFirework(position) {
+            const particleCount = 30 + Math.floor(Math.random() * 20); // 30-50 particles
+            const preset = PRESETS[monitorSelect.value];
+
+            for (let i = 0; i < particleCount; i++) {
+                // Random direction for explosion
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.random() * Math.PI;
+                const speed = 0.02 + Math.random() * 0.04;
+
+                const velocity = new THREE.Vector3(
+                    Math.sin(phi) * Math.cos(theta) * speed,
+                    Math.sin(phi) * Math.sin(theta) * speed,
+                    Math.cos(phi) * speed
+                );
+
+                // Alternate between light and dark colors from current preset
+                const color = i % 2 === 0 ? preset.light : preset.dark;
+
+                const particle = new Particle(position.clone(), velocity, color);
+                particles.push(particle);
+            }
+        }
+
+        // Update all particles
+        function updateParticles() {
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const alive = particles[i].update();
+                if (!alive) {
+                    particles[i].destroy();
+                    particles.splice(i, 1);
+                }
+            }
+        }
+
+        // Mouse click handler
+        function onCanvasClick(event) {
+            // Calculate mouse position in normalized device coordinates (-1 to +1)
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+            // Cast ray from camera through mouse position
+            raycaster.setFromCamera(mouse, camera);
+
+            // Create a point in 3D space at a fixed distance from camera
+            const distance = 5;
+            const direction = new THREE.Vector3();
+            raycaster.ray.direction.normalize();
+            direction.copy(raycaster.ray.direction).multiplyScalar(distance);
+            const clickPosition = camera.position.clone().add(direction);
+
+            // Create firework at that position
+            createFirework(clickPosition);
+        }
+
+        // Add click event listener
+        renderer.domElement.addEventListener('click', onCanvasClick);
 
         // --- Post Processing ---
         const composer = new EffectComposer(renderer);
@@ -511,6 +632,9 @@
 
             debrisGroup.rotation.y += 0.002;
             debrisGroup.rotation.x += 0.001;
+
+            // Update firework particles
+            updateParticles();
 
             composer.render();
         }
