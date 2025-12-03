@@ -67,10 +67,10 @@
             right: 40px;
             z-index: 10;
             text-align: center;
-            background: rgba(0, 0, 0, 0.85);
+            background: transparent;
             padding: 15px 25px;
-            border: 2px solid currentColor; /* Takes text color */
-            color: white; /* Default, will be overridden by JS */
+            border: 2px solid #ffffff;
+            color: #ffffff;
             box-shadow: 0 0 15px rgba(0,0,0,0.5);
             transition: color 0.3s, border-color 0.3s;
             display: flex;
@@ -679,21 +679,21 @@
             const bgColor = useLightTheme ? `#${preset.light.getHexString()}` : '#000';
             document.body.style.backgroundColor = bgColor;
 
-            // Update UI layer background - always use dark semi-transparent for retro look
-            uiLayer.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
+            // Update UI layer - keep transparent with white text/border (matches logo)
+            uiLayer.style.backgroundColor = 'transparent';
+            uiLayer.style.color = '#ffffff';
+            uiLayer.style.borderColor = '#ffffff';
 
-            // Update UI Colors (text should be dark color in both themes for visibility)
+            // Update other UI elements with preset dark color for visibility
             const textColor = `#${preset.dark.getHexString()}`;
-            uiLayer.style.color = textColor;
-            uiLayer.style.borderColor = textColor;
             titleBlock.style.color = textColor;
             instructions.style.color = textColor;
             leftHeader.style.color = textColor;
             footerLeft.style.color = textColor;
 
-            // Update dropdown borders
+            // Update dropdown borders to white (matches UI layer)
             document.querySelectorAll('select').forEach(el => {
-                el.style.borderColor = textColor;
+                el.style.borderColor = '#ffffff';
             });
 
             // Update meta theme-color
