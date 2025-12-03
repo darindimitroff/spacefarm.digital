@@ -679,9 +679,8 @@
             const bgColor = useLightTheme ? `#${preset.light.getHexString()}` : '#000';
             document.body.style.backgroundColor = bgColor;
 
-            // Update UI layer background based on theme
-            const uiLayerBg = useLightTheme ? 'rgba(255, 255, 255, 0.85)' : 'rgba(0, 0, 0, 0.85)';
-            uiLayer.style.backgroundColor = uiLayerBg;
+            // Update UI layer background - always use dark semi-transparent for retro look
+            uiLayer.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
 
             // Update UI Colors (text should be dark color in both themes for visibility)
             const textColor = `#${preset.dark.getHexString()}`;
