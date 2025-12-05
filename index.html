@@ -368,6 +368,36 @@
         let logoTexture = null; // Defined at top level to avoid ReferenceError
         let logoGroup = null;
 
+        // --- Responsive Logo Sizing ---
+        function calculateLogoScale() {
+            const width = window.innerWidth;
+
+            // iPhone 5 portrait is 320px
+            // We want to ensure the logo fits with spacing on all screens >= 320px
+            // Only allow cropping on screens < 320px
+
+            if (width >= 768) {
+                // Desktop/tablet - full size
+                return 1.0;
+            } else if (width >= 480) {
+                // Small tablets/large phones - scale down to 70-90%
+                return 0.7 + (width - 480) / (768 - 480) * 0.3;
+            } else if (width >= 320) {
+                // Small phones (iPhone 5 and up) - scale down to 50-70%
+                return 0.5 + (width - 320) / (480 - 320) * 0.2;
+            } else {
+                // Very small screens - scale down further but still show most of logo
+                return Math.max(0.35, 0.5 * (width / 320));
+            }
+        }
+
+        function updateLogoScale() {
+            if (logoGroup) {
+                const scale = calculateLogoScale();
+                logoGroup.scale.set(scale, scale, scale);
+            }
+        }
+
         // --- Scene Setup ---
         const container = document.getElementById('canvas-container');
         const scene = new THREE.Scene();
@@ -440,6 +470,10 @@
             const textMaterial = new THREE.MeshLambertMaterial({ color: 0xffffff });
             const textMesh = new THREE.Mesh(textGeo, textMaterial);
             logoGroup.add(textMesh);
+
+            // Apply responsive scaling
+            updateLogoScale();
+
             console.log('3D text loaded and added to scene');
         }, undefined, function(error) {
             console.error('Failed to load 3D text font:', error);
@@ -755,6 +789,7 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
             composer.setSize(window.innerWidth, window.innerHeight);
             ditherPass.uniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
+            updateLogoScale();
         });
 
         animate();
