@@ -380,30 +380,36 @@
             const width = window.innerWidth;
             const height = window.innerHeight;
             const isPortrait = height > width;
+            const isMobile = width < 1024 || height < 600; // Detect mobile/small screens
 
-            // Portrait phone mode - make logo 90% of viewport width
-            if (isPortrait && width < 768) {
-                // The logo "SPACEFARM" has approximate native width of ~10 units at scale 1.0
-                // To make it 90% of viewport width, we need to calculate the scale
-                // Using camera FOV and distance to approximate the relationship
-                // Through testing: scale of ~0.45 gives us 90% width on typical phones
-                return 0.45;
+            // For mobile devices (both portrait and landscape), calculate scale to make logo 90% of viewport width
+            if (isMobile) {
+                // Calculate visible width at logo's z-position (z=0) based on camera FOV and distance
+                // Camera is at z=7, FOV=45 degrees
+                const cameraDistance = 7;
+                const fovRadians = (45 * Math.PI) / 180;
+                const aspect = width / height;
+
+                // Calculate visible width at the logo's position
+                const visibleHeight = 2 * cameraDistance * Math.tan(fovRadians / 2);
+                const visibleWidth = visibleHeight * aspect;
+
+                // The logo "SPACEFARM" has approximate native width of ~11 units at scale 1.0
+                // (measured from TextGeometry with size: 1.2, accounting for all characters and spacing)
+                const logoNativeWidth = 11;
+
+                // Calculate scale to make logo 90% of viewport width
+                // For landscape orientation, use a more conservative 85% to prevent overflow
+                const targetPercentage = isPortrait ? 0.9 : 0.85;
+                const targetWidth = visibleWidth * targetPercentage;
+                const scale = targetWidth / logoNativeWidth;
+
+                // Clamp scale to reasonable bounds (prevent too small or too large)
+                return Math.max(0.3, Math.min(1.0, scale));
             }
 
-            // Landscape or larger screens - use existing logic
-            if (width >= 768) {
-                // Desktop/tablet - full size
-                return 1.0;
-            } else if (width >= 480) {
-                // Small tablets/large phones - scale down to 70-90%
-                return 0.7 + (width - 480) / (768 - 480) * 0.3;
-            } else if (width >= 320) {
-                // Small phones (iPhone 5 and up) - scale down to 50-70%
-                return 0.5 + (width - 320) / (480 - 320) * 0.2;
-            } else {
-                // Very small screens - scale down further but still show most of logo
-                return Math.max(0.35, 0.5 * (width / 320));
-            }
+            // Desktop/large screens - full size
+            return 1.0;
         }
 
         function updateLogoScale() {
