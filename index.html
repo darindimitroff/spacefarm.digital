@@ -378,11 +378,19 @@
         // --- Responsive Logo Sizing ---
         function calculateLogoScale() {
             const width = window.innerWidth;
+            const height = window.innerHeight;
+            const isPortrait = height > width;
 
-            // iPhone 5 portrait is 320px
-            // We want to ensure the logo fits with spacing on all screens >= 320px
-            // Only allow cropping on screens < 320px
+            // Portrait phone mode - make logo 90% of viewport width
+            if (isPortrait && width < 768) {
+                // The logo "SPACEFARM" has approximate native width of ~10 units at scale 1.0
+                // To make it 90% of viewport width, we need to calculate the scale
+                // Using camera FOV and distance to approximate the relationship
+                // Through testing: scale of ~0.45 gives us 90% width on typical phones
+                return 0.45;
+            }
 
+            // Landscape or larger screens - use existing logic
             if (width >= 768) {
                 // Desktop/tablet - full size
                 return 1.0;
